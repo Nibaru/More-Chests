@@ -12,7 +12,7 @@ public class ReiPlugin implements REIClientPlugin {
         zones.register(NetheriteChestScreen.class, screen -> {
             // screen is OurScreen
             // returns the list of rectangle
-            return List.of(new Rectangle(150, 20, screen.width -300, 200));
+            return List.of(new Rectangle(((screen.width - screen.getBackgroundWidth()) / 2) - 24, (screen.height - screen.getBackgroundHeight()) / 2, screen.getBackgroundWidth()+ 46, screen.getBackgroundHeight()));
         });
     }
 }

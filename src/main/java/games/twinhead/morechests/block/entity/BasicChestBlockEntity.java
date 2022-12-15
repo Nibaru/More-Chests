@@ -1,17 +1,21 @@
 package games.twinhead.morechests.block.entity;
 
 import games.twinhead.morechests.block.ChestTypes;
+import games.twinhead.morechests.screen.BasicChestScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.DoubleInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -21,26 +25,61 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class BasicChestBlockEntity extends ChestBlockEntity {
 
     private final ChestTypes type;
-    int viewers = 0;
-
+    private int viewers = 0;
+    private float angle, last;
+    private final ViewerCountManager stateManager;
+    private final ChestLidAnimator lidAnimator;
 
     public BasicChestBlockEntity(BlockPos pos, BlockState state, ChestTypes type) {
         this(type.getBlockEntityType(), pos, state, type);
     }
 
-
     public BasicChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state, ChestTypes type) {
         super(blockEntityType, pos, state);
         this.setInvStackList(DefaultedList.ofSize(type.rows * type.columns, ItemStack.EMPTY));
         this.type = type;
+        this.stateManager = new ViewerCountManager() {
+            protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
+                BasicChestBlockEntity.playSound(world, pos, state, SoundEvents.BLOCK_CHEST_OPEN);
+            }
+
+            protected void onContainerClose(World world, BlockPos pos, BlockState state) {
+                BasicChestBlockEntity.playSound(world, pos, state, SoundEvents.BLOCK_CHEST_CLOSE);
+            }
+
+            protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+                BasicChestBlockEntity.this.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
+                viewers = newViewerCount;
+                lidAnimator.setOpen(newViewerCount > 0);
+
+            }
+
+            protected boolean isPlayerViewing(PlayerEntity player) {
+                if (!(player.currentScreenHandler instanceof BasicChestScreenHandler)) {
+                    return false;
+                } else {
+                    Inventory inventory = ((BasicChestScreenHandler)player.currentScreenHandler).getInventory();
+                    return inventory == BasicChestBlockEntity.this;
+                }
+            }
+        };
+        this.lidAnimator = new ChestLidAnimator();
     }
 
-
+    public boolean onSyncedBlockEvent(int type, int data) {
+        if (type == 1) {
+            this.lidAnimator.setOpen(data > 0);
+            return true;
+        } else {
+            return super.onSyncedBlockEvent(type, data);
+        }
+    }
 
 
     @Override
@@ -54,15 +93,15 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
     }
 
     public void onOpen(PlayerEntity player) {
-        if (!player.isSpectator()) {
-            this.viewers++;
+        if (!this.removed && !player.isSpectator()) {
+            this.stateManager.openContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
             markDirty();
         }
     }
 
     public void onClose(PlayerEntity player) {
-        if (!player.isSpectator()) {
-            this.viewers--;
+        if (!this.removed && !player.isSpectator()) {
+            this.stateManager.closeContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
             markDirty();
         }
     }
@@ -96,11 +135,6 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
         tag.putInt("viewers", viewers);
     }
 
-
-
-
-
-
     @Override
     public void markDirty() {
         super.markDirty();
@@ -111,11 +145,11 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
 
     @Environment(EnvType.CLIENT)
     public int countViewers() {
-        return this.viewers;
+        return viewers;
     }
 
 
-    private float angle,last;
+
 
     @Override
     @Environment(EnvType.CLIENT)
@@ -126,6 +160,7 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
     @Environment(EnvType.CLIENT)
     public void clientTick() {
         progressAnimation();
+
     }
 
 
@@ -137,22 +172,24 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
             int viewers = countViewers();
 
             if (viewers > 0 && angle == 0.0F)
-                playSound(SoundEvents.BLOCK_CHEST_OPEN);
+                playSound(world, pos, this.getCachedState(), SoundEvents.BLOCK_CHEST_OPEN);
 
-            if (viewers == 0 && angle > 0.0F || viewers > 0 && angle < 1.0F) {
+            if (viewers == 0 && angle > 0.0F || viewers > 0 && angle < 0.89F) {
                 float f = angle;
                 if (viewers > 0) angle += 0.1F;
                 else angle -= 0.1F;
                 angle = MathHelper.clamp(angle, 0, 1);
                 if (angle < 0.5F && f >= 0.5F)
-                    playSound(SoundEvents.BLOCK_CHEST_CLOSE);
+                    playSound(world, pos, this.getCachedState(), SoundEvents.BLOCK_CHEST_CLOSE);
+
+
             }
         }
     }
 
     @Environment(EnvType.CLIENT)
-    private void playSound(SoundEvent soundEvent) {
-        assert this.world != null;
-        this.world.playSound((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D, soundEvent, SoundCategory.BLOCKS, 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F, false);
+    private static void playSound(World world, BlockPos pos, BlockState state, SoundEvent soundEvent) {
+        assert world != null;
+        world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, soundEvent, SoundCategory.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F, false);
     }
 }

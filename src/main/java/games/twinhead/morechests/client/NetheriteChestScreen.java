@@ -26,13 +26,21 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
         this.playerInventoryTitleY = this.backgroundHeight - 89;
         this.playerInventoryTitleX = this.backgroundWidth - 114 ;
         this.backgroundWidth = 284;
+        this.titleX = titleX - 27;
+    }
+
+    public int getBackgroundWidth(){
+        return this.backgroundWidth;
+    }
+
+    public int getBackgroundHeight(){
+        return this.backgroundHeight;
     }
 
 
     @Override
     protected void init() {
         super.init();
-        this.titleX = ((width - backgroundWidth) / 2) - 196;
     }
 
     @Override

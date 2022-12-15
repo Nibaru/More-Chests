@@ -57,7 +57,8 @@ public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> 
             }
 
 
-            float g = ((Float2FloatFunction)properties.apply(BasicChestBlock.getAnimationProgressRetriever((LidOpenable)entity))).get(tickDelta);
+            //float g = ((Float2FloatFunction)properties.apply(  BasicChestBlock.getAnimationProgressRetriever((LidOpenable)entity))).get(tickDelta);
+            float g = entity.getAnimationProgress(tickDelta);
             g = 1.0F - g;
             g = 1.0F - g * g * g;
             int i = ((Int2IntFunction)properties.apply(new LightmapCoordinatesRetriever())).applyAsInt(light);
