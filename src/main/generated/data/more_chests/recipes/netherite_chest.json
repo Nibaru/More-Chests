@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "more_chests:diamond_chest"
+  },
+  "result": {
+    "item": "more_chests:netherite_chest"
+  }
+}

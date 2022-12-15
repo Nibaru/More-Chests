@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "metal_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "tag": "more_chests:gold_upgrade_chests"
+    }
+  },
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:gold_chest"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "more_chests:wooden_chests"
+    }
+  ],
+  "result": {
+    "item": "minecraft:chest"
+  }
+}
