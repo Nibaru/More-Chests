@@ -19,14 +19,11 @@
     ],
     "rei_client": [
       "games.twinhead.morechests.client.ReiPlugin"
-    ],
-    "fabric-datagen": [
-      "games.twinhead.morechests.datagen.ModDatagen"
     ]
   },
   "depends": {
     "fabricloader": ">=0.14.11",
     "fabric": "*",
-    "minecraft": "1.19.3"
+    "minecraft": "1.19.2"
   }
 }

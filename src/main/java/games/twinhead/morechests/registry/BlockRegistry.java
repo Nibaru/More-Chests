@@ -5,16 +5,13 @@ import games.twinhead.morechests.block.BasicChestBlock;
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.block.CopperChestBlock;
 import games.twinhead.morechests.block.WaxedCopperChestBlock;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class BlockRegistry {
 
@@ -83,16 +80,14 @@ public class BlockRegistry {
     }
 
     public static void registerBlock(Identifier id, Block block){
-        Registry.register(Registries.BLOCK, id, block);
+        Registry.register(Registry.BLOCK, id, block);
         registerBlockItem(id, block);
     }
 
 
 
      public static void registerBlockItem(Identifier id, Block block){
-         Item item = Registry.register(Registries.ITEM, id, new BlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof() :new Item.Settings() )));
-         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(item));
-         ItemGroupEvents.modifyEntriesEvent(MoreChests.MOD_GROUP).register(entries -> entries.add(item));
+         Item item = Registry.register(Registry.ITEM, id, new BlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof().group(MoreChests.MOD_GROUP) :new Item.Settings().group(MoreChests.MOD_GROUP) )));
      }
 
 }

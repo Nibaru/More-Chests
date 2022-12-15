@@ -5,8 +5,8 @@ import games.twinhead.morechests.registry.BlockEntityRegistry;
 import games.twinhead.morechests.registry.BlockRegistry;
 import games.twinhead.morechests.registry.ScreenHandlerRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -17,33 +17,32 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.tag.TagKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class MoreChests implements ModInitializer {
 
     public static final String MOD_ID = "more_chests";
 
-    public static final TagKey<Item> WOODEN_CHESTS = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "wooden_chests"));
-    public static final TagKey<Block> WOODEN_CHESTS_BLOCK = TagKey.of(RegistryKeys.BLOCK, new Identifier(MoreChests.MOD_ID, "wooden_chests"));
-    public static final TagKey<Item> GOLD_UPGRADE_CHESTS = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "gold_upgrade_chests"));
-    public static final TagKey<Block> GOLD_UPGRADE_CHESTS_BLOCK = TagKey.of(RegistryKeys.BLOCK, new Identifier(MoreChests.MOD_ID, "gold_upgrade_chests"));
-    public static final TagKey<Block> CHESTS = TagKey.of(RegistryKeys.BLOCK, new Identifier(MoreChests.MOD_ID, "chests"));
-    public static final TagKey<Item> COPPER_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "copper_chest_upgrade_item"));
-    public static final TagKey<Item> IRON_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "iron_chest_upgrade_item"));
-    public static final TagKey<Item> GOLD_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "gold_chest_upgrade_item"));
-    public static final TagKey<Item> DIAMOND_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "diamond_chest_upgrade_item"));
-    public static final TagKey<Item> NETHERITE_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "netherite_chest_upgrade_item"));
+    public static final TagKey<Item> WOODEN_CHESTS = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "wooden_chests"));
+    public static final TagKey<Block> WOODEN_CHESTS_BLOCK = TagKey.of(Registry.BLOCK_KEY, new Identifier(MoreChests.MOD_ID, "wooden_chests"));
+    public static final TagKey<Item> GOLD_UPGRADE_CHESTS = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "gold_upgrade_chests"));
+    public static final TagKey<Block> GOLD_UPGRADE_CHESTS_BLOCK = TagKey.of(Registry.BLOCK_KEY, new Identifier(MoreChests.MOD_ID, "gold_upgrade_chests"));
+    public static final TagKey<Block> CHESTS = TagKey.of(Registry.BLOCK_KEY, new Identifier(MoreChests.MOD_ID, "chests"));
+    public static final TagKey<Item> COPPER_CHEST_UPGRADE_ITEM = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "copper_chest_upgrade_item"));
+    public static final TagKey<Item> IRON_CHEST_UPGRADE_ITEM = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "iron_chest_upgrade_item"));
+    public static final TagKey<Item> GOLD_CHEST_UPGRADE_ITEM = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "gold_chest_upgrade_item"));
+    public static final TagKey<Item> DIAMOND_CHEST_UPGRADE_ITEM = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "diamond_chest_upgrade_item"));
+    public static final TagKey<Item> NETHERITE_CHEST_UPGRADE_ITEM = TagKey.of(Registry.ITEM_KEY, new Identifier(MoreChests.MOD_ID, "netherite_chest_upgrade_item"));
 
-    public static ItemGroup MOD_GROUP  = FabricItemGroup.builder(new Identifier(MoreChests.MOD_ID, "more_chests_tab"))
-            .icon(()-> new ItemStack(BlockRegistry.DIAMOND_CHEST))
-            .build();
+    public static ItemGroup MOD_GROUP  = FabricItemGroupBuilder.build(new Identifier(MoreChests.MOD_ID, "more_chests_tab"),
+            ()-> new ItemStack(BlockRegistry.DIAMOND_CHEST));
 
     @Override
     public void onInitialize() {

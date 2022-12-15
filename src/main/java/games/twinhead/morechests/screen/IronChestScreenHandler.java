@@ -52,7 +52,7 @@ public class IronChestScreenHandler extends ScreenHandler {
 
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
+    public ItemStack transferSlot(PlayerEntity player, int slot) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot2 = (Slot)this.slots.get(slot);
         if (slot2 != null && slot2.hasStack()) {

@@ -20,7 +20,7 @@ import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
@@ -47,7 +47,7 @@ public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> 
             matrices.push();
             float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
             matrices.translate(0.5F, 0.5F, 0.5F);
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
+            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
             matrices.translate(-0.5F, -0.5F, -0.5F);
             DoubleBlockProperties.PropertySource<? extends ChestBlockEntity> properties;
             if (world == null) {

@@ -5,6 +5,7 @@ plugins {
     id "com.modrinth.minotaur" version "2.+"
 }
 
+
 version = project.mod_version
 group = project.maven_group
 
@@ -26,8 +27,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi "me.shedaniel:RoughlyEnoughItems-fabric:10.0.581"
-    modApi "me.shedaniel.cloth:cloth-config-fabric:9.0.94"
+    modApi "dev.architectury:architectury-fabric:6.4.62"
+    modApi "me.shedaniel:RoughlyEnoughItems-fabric:9.1.580"
+    modApi "me.shedaniel.cloth:cloth-config-fabric:8.2.88"
 }
 
 processResources {
@@ -81,7 +83,7 @@ java {
     if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
-    archivesBaseName = project.archives_base_name
+    archivesBaseName = project.archives_base_name +"-"+ project.minecraft_version
     // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
     // if it is present.
     // If you remove this line, sources will not be generated.

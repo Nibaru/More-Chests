@@ -4,10 +4,8 @@ import games.twinhead.morechests.block.BasicChestBlock;
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.util.registry.Registry;
 
 public class BlockEntityRegistry {
 
@@ -59,7 +57,7 @@ public class BlockEntityRegistry {
 
 
     private static BlockEntityType<BasicChestBlockEntity> register(ChestTypes type, BasicChestBlock... block){
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new BasicChestBlockEntity(pos, state, type),
                         block).build(null));
     }
