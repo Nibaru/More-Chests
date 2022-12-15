@@ -1,6 +1,12 @@
 ## More Chests Changelog
 
-### 1.0.0 for Fabric 1.19.3
+### 1.0.1 for Fabric 1.19.2
+#### Fixed
+- Issue causing chests to never close their lid
+- Netherite Chests Title changes location based on GUI size
+
+
+### 1.0.0 for Fabric 1.19.2
 #### Added
 - Oak Chest
 - Birch Chest

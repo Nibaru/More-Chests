@@ -75,6 +75,10 @@ public class BasicChestScreenHandler extends ScreenHandler {
         return this.inventory.canPlayerUse(player);
     }
 
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
     @Override
     public void close(PlayerEntity player){
         super.close(player);
