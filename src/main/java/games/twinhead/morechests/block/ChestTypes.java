@@ -3,6 +3,7 @@ package games.twinhead.morechests.block;
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.entity.*;
 import games.twinhead.morechests.registry.BlockEntityRegistry;
+import games.twinhead.morechests.registry.ScreenHandlerRegistry;
 import games.twinhead.morechests.screen.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
@@ -42,6 +43,12 @@ public enum ChestTypes {
         this.columns = columns;
         this.rows = rows;
         this.isBasic = false;
+    }
+
+
+    //returns chest type inventory size
+    public int size(){
+        return this.columns * this.rows;
     }
 
     public Identifier getId(){
@@ -90,7 +97,8 @@ public enum ChestTypes {
             case GOLD -> new GoldChestScreenHandler(syncId, inv, inventory);
             case DIAMOND -> new DiamondChestScreenHandler(syncId, inv, inventory);
             case NETHERITE -> new NetheriteChestScreenHandler(syncId, inv, inventory);
-            default -> new BasicChestScreenHandler(syncId, inv, inventory);
+            case COPPER -> new CopperChestScreenHandler(syncId, inv, inventory);
+            default -> new BasicChestScreenHandler(this, syncId, inv, inventory);
         };
     }
 }

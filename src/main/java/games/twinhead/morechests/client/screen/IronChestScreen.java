@@ -1,4 +1,4 @@
-package games.twinhead.morechests.client;
+package games.twinhead.morechests.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import games.twinhead.morechests.screen.IronChestScreenHandler;

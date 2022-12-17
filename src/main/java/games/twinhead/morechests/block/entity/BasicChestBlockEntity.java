@@ -1,21 +1,19 @@
 package games.twinhead.morechests.block.entity;
 
 import games.twinhead.morechests.block.ChestTypes;
-import games.twinhead.morechests.screen.BasicChestScreenHandler;
+import games.twinhead.morechests.screen.AbstractChestScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.DoubleInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -59,10 +57,10 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
             }
 
             protected boolean isPlayerViewing(PlayerEntity player) {
-                if (!(player.currentScreenHandler instanceof BasicChestScreenHandler)) {
+                if (!(player.currentScreenHandler instanceof AbstractChestScreenHandler)) {
                     return false;
                 } else {
-                    Inventory inventory = ((BasicChestScreenHandler)player.currentScreenHandler).getInventory();
+                    Inventory inventory = ((AbstractChestScreenHandler)player.currentScreenHandler).getInventory();
                     return inventory == BasicChestBlockEntity.this;
                 }
             }

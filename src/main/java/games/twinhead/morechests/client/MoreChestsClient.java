@@ -1,5 +1,6 @@
 package games.twinhead.morechests.client;
 
+import games.twinhead.morechests.client.screen.*;
 import games.twinhead.morechests.registry.ModBlockEntityRendererRegistry;
 import games.twinhead.morechests.registry.ScreenHandlerRegistry;
 import net.fabricmc.api.ClientModInitializer;

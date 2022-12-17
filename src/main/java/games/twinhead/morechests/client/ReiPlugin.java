@@ -1,5 +1,6 @@
 package games.twinhead.morechests.client;
 
+import games.twinhead.morechests.client.screen.NetheriteChestScreen;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.screen.ExclusionZones;
