@@ -1,5 +1,12 @@
 ## More Chests Changelog
 
+### 1.0.2 for Fabric 1.19.3
+#### Fixed
+- Issue causing server crash when a chest is opened
+- Fixed positioning of player inventory title in wooden and copper chests
+
+
+
 ### 1.0.1 for Fabric 1.19.3
 #### Fixed
 - Issue causing chests to never close their lid

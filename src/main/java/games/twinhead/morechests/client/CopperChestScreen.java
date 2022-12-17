@@ -20,7 +20,7 @@ public class CopperChestScreen extends HandledScreen<CopperChestScreenHandler> {
         super(handler, inventory, title);
         this.passEvents = false;
         this.backgroundHeight = 116 + this.rows * 18;
-        this.playerInventoryTitleY = this.backgroundHeight - 94;
+        this.playerInventoryTitleY = this.backgroundHeight - 95;
     }
 
 

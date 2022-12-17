@@ -46,11 +46,9 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
         this.type = type;
         this.stateManager = new ViewerCountManager() {
             protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
-                BasicChestBlockEntity.playSound(world, pos, state, SoundEvents.BLOCK_CHEST_OPEN);
             }
 
             protected void onContainerClose(World world, BlockPos pos, BlockState state) {
-                BasicChestBlockEntity.playSound(world, pos, state, SoundEvents.BLOCK_CHEST_CLOSE);
             }
 
             protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
