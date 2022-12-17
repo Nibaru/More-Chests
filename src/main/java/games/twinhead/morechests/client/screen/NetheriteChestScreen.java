@@ -1,4 +1,4 @@
-package games.twinhead.morechests.client;
+package games.twinhead.morechests.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import games.twinhead.morechests.MoreChests;
@@ -41,7 +41,6 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
     @Override
     protected void init() {
         super.init();
-
     }
 
     @Override
@@ -49,6 +48,7 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
+
         int i = (width - backgroundWidth) / 2;
         int j = (height - backgroundHeight) / 2;
 
@@ -71,7 +71,7 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
         this.drawTexture(matrices, i + 18 * 14 - 2, j + 3 * 18 + 17,  169, 17, 18 * 3 + 7, 115);
 
         //inventory
-        this.drawTexture(matrices, i + 27, j + 9 * 18 + 21,  0, 135, 18 * 12, 96);
+        this.drawTexture(matrices, i + 54, j + 9 * 18 + 21,  0, 133, 18 * 12, 96);
         //this.drawTexture(matrices, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
     }
 

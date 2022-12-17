@@ -1,8 +1,7 @@
-package games.twinhead.morechests.client;
+package games.twinhead.morechests.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import games.twinhead.morechests.MoreChests;
-import games.twinhead.morechests.screen.GoldChestScreenHandler;
+import games.twinhead.morechests.screen.CopperChestScreenHandler;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -10,21 +9,18 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class GoldChestScreen extends HandledScreen<GoldChestScreenHandler> {
+public class CopperChestScreen extends HandledScreen<CopperChestScreenHandler> {
 
-    public final int rows = 6;
-    public final int columns = 12;
+    public final int rows = 5;
 
     private static final Identifier TEXTURE =
-            new Identifier(MoreChests.MOD_ID, "textures/gui/container/generic_6x12.png");
+            new Identifier("minecraft", "textures/gui/container/generic_54.png");
 
-    public GoldChestScreen(GoldChestScreenHandler handler, PlayerInventory inventory, Text title) {
+    public CopperChestScreen(CopperChestScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.passEvents = false;
-        this.backgroundHeight = 113 + this.rows * 18;
-        this.playerInventoryTitleY = this.backgroundHeight - 93;
-        this.playerInventoryTitleX = this.backgroundWidth - 141;
-        this.backgroundWidth = 230;
+        this.backgroundHeight = 116 + this.rows * 18;
+        this.playerInventoryTitleY = this.backgroundHeight - 95;
     }
 
 

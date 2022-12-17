@@ -1,4 +1,4 @@
-package games.twinhead.morechests.client;
+package games.twinhead.morechests.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import games.twinhead.morechests.screen.IronChestScreenHandler;
@@ -39,7 +39,7 @@ public class IronChestScreen extends HandledScreen<IronChestScreenHandler> {
         int j = (height - backgroundHeight) / 2;
         //drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
         this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);
-        this.drawTexture(matrices, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 94);
+        this.drawTexture(matrices, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
     }
 
     @Override

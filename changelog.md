@@ -1,13 +1,24 @@
-## More Chests Changelog
+# More Chests Changelog
 
-### 1.0.1 for Fabric 1.19.2
-#### Fixed
+## 1.0.2 for Fabric 1.19.2
+
+### Changed
+- Changed the 
+
+### Fixed
+- Issue causing server crash when a chest is opened
+- Fixed positioning of player inventory title in wooden and copper chests
+
+
+
+## 1.0.1 for Fabric 1.19.2
+### Fixed
 - Issue causing chests to never close their lid
 - Netherite Chests Title changes location based on GUI size
 
 
-### 1.0.0 for Fabric 1.19.2
-#### Added
+## 1.0.0 for Fabric 1.19.2
+### Added
 - Oak Chest
 - Birch Chest
 - Spruce Chest

@@ -44,6 +44,12 @@ public enum ChestTypes {
         this.isBasic = false;
     }
 
+
+    //returns chest type inventory size
+    public int size(){
+        return this.columns * this.rows;
+    }
+
     public Identifier getId(){
         return new Identifier(MoreChests.MOD_ID, this.name().toLowerCase() + "_chest");
     }
@@ -90,7 +96,8 @@ public enum ChestTypes {
             case GOLD -> new GoldChestScreenHandler(syncId, inv, inventory);
             case DIAMOND -> new DiamondChestScreenHandler(syncId, inv, inventory);
             case NETHERITE -> new NetheriteChestScreenHandler(syncId, inv, inventory);
-            default -> new BasicChestScreenHandler(syncId, inv, inventory);
+            case COPPER -> new CopperChestScreenHandler(syncId, inv, inventory);
+            default -> new BasicChestScreenHandler(this, syncId, inv, inventory);
         };
     }
 }
