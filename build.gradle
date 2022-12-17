@@ -122,6 +122,7 @@ curseforge {
         changelog = file('changelog.md')
         releaseType = 'release'
         addGameVersion "Fabric"
+        addGameVersion "Quilt"
         addGameVersion project.minecraft_version
     }
 }
