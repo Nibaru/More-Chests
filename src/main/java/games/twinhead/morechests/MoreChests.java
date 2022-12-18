@@ -63,7 +63,6 @@ public class MoreChests {
         event.registerBlockEntityRenderer(BlockEntityRegistry.CRIMSON_PLANK_CHEST.get(), ChestEntityRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.DARK_OAK_PLANK_CHEST.get(), ChestEntityRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.JUNGLE_PLANK_CHEST.get(), ChestEntityRenderer::new);
-        event.registerBlockEntityRenderer(BlockEntityRegistry.MANGROVE_PLANK_CHEST.get(), ChestEntityRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.OAK_PLANK_CHEST.get(), ChestEntityRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.SPRUCE_PLANK_CHEST.get(), ChestEntityRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.WARPED_PLANK_CHEST.get(), ChestEntityRenderer::new);

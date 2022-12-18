@@ -20,7 +20,6 @@ public class BlockRegistry {
     public static final RegistryObject<Block> CRIMSON_PLANK_CHEST = BLOCKS.register("crimson_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS), ChestTypes.CRIMSON_PLANK));
     public static final RegistryObject<Block> DARK_OAK_PLANK_CHEST = BLOCKS.register("dark_oak_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS), ChestTypes.DARK_OAK_PLANK));
     public static final RegistryObject<Block> JUNGLE_PLANK_CHEST = BLOCKS.register("jungle_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS), ChestTypes.JUNGLE_PLANK));
-    public static final RegistryObject<Block> MANGROVE_PLANK_CHEST = BLOCKS.register("mangrove_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS), ChestTypes.MANGROVE_PLANK));
     public static final RegistryObject<Block> OAK_PLANK_CHEST = BLOCKS.register("oak_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS), ChestTypes.OAK_PLANK));
     public static final RegistryObject<Block> SPRUCE_PLANK_CHEST = BLOCKS.register("spruce_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS), ChestTypes.SPRUCE_PLANK));
     public static final RegistryObject<Block> WARPED_PLANK_CHEST = BLOCKS.register("warped_plank_chest", () -> new BasicChestBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS), ChestTypes.WARPED_PLANK));

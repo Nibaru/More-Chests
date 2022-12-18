@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ScreenHandlerRegistry {
 
-    private static final DeferredRegister<ScreenHandlerType<?>> SCREEN_HANDLERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MoreChests.MOD_ID);
+    private static final DeferredRegister<ScreenHandlerType<?>> SCREEN_HANDLERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MoreChests.MOD_ID);
 
 
     public static final RegistryObject<ScreenHandlerType<BasicChestScreenHandler>> BASIC_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("basic_chest_screen_handler", () -> IForgeMenuType.create(BasicChestScreenHandler::new));

@@ -29,14 +29,14 @@ public class UpgradeChestsEvent {
     @SubscribeEvent
     public void clickChestEvent(PlayerInteractEvent event) {
         if(!event.getEntity().isSneaking()) event.setCancellationResult(ActionResult.PASS);
-        if(!event.getLevel().getBlockState(event.getPos()).isIn(CHESTS)) event.setCancellationResult(ActionResult.PASS);
+        if(!event.getWorld().getBlockState(event.getPos()).isIn(CHESTS)) event.setCancellationResult(ActionResult.PASS);
 
-        PlayerEntity player = event.getEntity();
+        PlayerEntity player = (PlayerEntity) event.getPlayer();
         BlockPos hitPos = event.getPos();
-        BlockState hitState = event.getLevel().getBlockState(hitPos);
-        ItemStack mainHand = event.getEntity().getInventory().getMainHandStack();
-        BlockEntity blockEntity = event.getLevel().getBlockEntity(hitPos);
-        World world = event.getLevel();
+        BlockState hitState = event.getWorld().getBlockState(hitPos);
+        ItemStack mainHand = player.getInventory().getMainHandStack();
+        BlockEntity blockEntity = event.getWorld().getBlockEntity(hitPos);
+        World world = event.getWorld();
 
         if (blockEntity == null) event.setCancellationResult(ActionResult.PASS);
         if(!(blockEntity instanceof ChestBlockEntity)){

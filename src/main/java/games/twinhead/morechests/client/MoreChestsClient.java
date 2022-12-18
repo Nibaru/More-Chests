@@ -1,10 +1,12 @@
 package games.twinhead.morechests.client;
 
+import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.client.screen.*;
 import games.twinhead.morechests.registry.ScreenHandlerRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.util.Identifier;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -29,5 +31,9 @@ public class MoreChestsClient  {
         for (ChestTypes type: ChestTypes.values()) {
             event.addSprite(type.getTextureId());
         }
+
+        event.addSprite(new Identifier(MoreChests.MOD_ID, "entity/chest/exposed_copper_chest"));
+        event.addSprite(new Identifier(MoreChests.MOD_ID, "entity/chest/weathered_copper_chest"));
+        event.addSprite(new Identifier(MoreChests.MOD_ID, "entity/chest/oxidized_copper_chest"));
     }
 }

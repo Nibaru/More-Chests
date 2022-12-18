@@ -18,7 +18,6 @@ public class ItemRegistry {
     public static final RegistryObject<Item> CRIMSON_PLANK_CHEST = ITEMS.register("crimson_plank_chest", () -> new BlockItem(BlockRegistry.CRIMSON_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));
     public static final RegistryObject<Item> DARK_OAK_PLANK_CHEST = ITEMS.register("dark_oak_plank_chest", () -> new BlockItem(BlockRegistry.DARK_OAK_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));
     public static final RegistryObject<Item> JUNGLE_PLANK_CHEST = ITEMS.register("jungle_plank_chest", () -> new BlockItem(BlockRegistry.JUNGLE_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));
-    public static final RegistryObject<Item> MANGROVE_PLANK_CHEST = ITEMS.register("mangrove_plank_chest", () -> new BlockItem(BlockRegistry.MANGROVE_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));
     public static final RegistryObject<Item> OAK_PLANK_CHEST = ITEMS.register("oak_plank_chest", () -> new BlockItem(BlockRegistry.OAK_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));
     public static final RegistryObject<Item> SPRUCE_PLANK_CHEST = ITEMS.register("spruce_plank_chest", () -> new BlockItem(BlockRegistry.SPRUCE_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));
     public static final RegistryObject<Item> WARPED_PLANK_CHEST = ITEMS.register("warped_plank_chest", () -> new BlockItem(BlockRegistry.WARPED_PLANK_CHEST.get(), new Item.Settings().group(ItemGroup.DECORATIONS)));

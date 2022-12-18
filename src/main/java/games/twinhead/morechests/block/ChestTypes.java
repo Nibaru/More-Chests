@@ -18,7 +18,6 @@ public enum ChestTypes {
     CRIMSON_PLANK,
     DARK_OAK_PLANK,
     JUNGLE_PLANK,
-    MANGROVE_PLANK,
     OAK_PLANK,
     SPRUCE_PLANK,
     WARPED_PLANK,
@@ -66,7 +65,6 @@ public enum ChestTypes {
             case CRIMSON_PLANK -> BlockEntityRegistry.CRIMSON_PLANK_CHEST.get();
             case DARK_OAK_PLANK -> BlockEntityRegistry.DARK_OAK_PLANK_CHEST.get();
             case JUNGLE_PLANK -> BlockEntityRegistry.JUNGLE_PLANK_CHEST.get();
-            case MANGROVE_PLANK -> BlockEntityRegistry.MANGROVE_PLANK_CHEST.get();
             case OAK_PLANK -> BlockEntityRegistry.OAK_PLANK_CHEST.get();
             case SPRUCE_PLANK -> BlockEntityRegistry.SPRUCE_PLANK_CHEST.get();
             case WARPED_PLANK -> BlockEntityRegistry.WARPED_PLANK_CHEST.get();

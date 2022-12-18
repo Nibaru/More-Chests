@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class BlockEntityRegistry {
 
-    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MoreChests.MOD_ID);
+    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, MoreChests.MOD_ID);
 
 
     public static RegistryObject<BlockEntityType<BasicChestBlockEntity>> ACACIA_PLANK_CHEST =
@@ -24,9 +24,7 @@ public class BlockEntityRegistry {
             BLOCK_ENTITIES.register("dark_oak_plank_chest", () ->  BlockEntityType.Builder.create((pos, state)-> new BasicChestBlockEntity(pos, state, ChestTypes.DARK_OAK_PLANK), BlockRegistry.DARK_OAK_PLANK_CHEST.get()).build(null));
     public static RegistryObject<BlockEntityType<BasicChestBlockEntity>> JUNGLE_PLANK_CHEST =
             BLOCK_ENTITIES.register("jungle_plank_chest", () ->  BlockEntityType.Builder.create((pos, state)-> new BasicChestBlockEntity(pos, state, ChestTypes.JUNGLE_PLANK), BlockRegistry.JUNGLE_PLANK_CHEST.get()).build(null));
-    public static RegistryObject<BlockEntityType<BasicChestBlockEntity>> MANGROVE_PLANK_CHEST =
-            BLOCK_ENTITIES.register("mangrove_plank_chest", () ->  BlockEntityType.Builder.create((pos, state)-> new BasicChestBlockEntity(pos, state, ChestTypes.MANGROVE_PLANK), BlockRegistry.MANGROVE_PLANK_CHEST.get()).build(null));
-    public static RegistryObject<BlockEntityType<BasicChestBlockEntity>> OAK_PLANK_CHEST =
+   public static RegistryObject<BlockEntityType<BasicChestBlockEntity>> OAK_PLANK_CHEST =
             BLOCK_ENTITIES.register("oak_plank_chest", () ->  BlockEntityType.Builder.create((pos, state)-> new BasicChestBlockEntity(pos, state, ChestTypes.OAK_PLANK), BlockRegistry.OAK_PLANK_CHEST.get()).build(null));
     public static RegistryObject<BlockEntityType<BasicChestBlockEntity>> SPRUCE_PLANK_CHEST =
             BLOCK_ENTITIES.register("spruce_plank_chest", () ->  BlockEntityType.Builder.create((pos, state)-> new BasicChestBlockEntity(pos, state, ChestTypes.SPRUCE_PLANK), BlockRegistry.SPRUCE_PLANK_CHEST.get()).build(null));
