@@ -1,6 +1,6 @@
 {
   "parent": "more_chests:block/chest_template",
   "textures": {
-    "chest": "more_chests:chest/copper_chest"
+    "chest": "more_chests:entity/chest/copper_chest"
   }
 }

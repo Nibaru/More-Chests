@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.screen.DiamondChestScreenHandler;
-import games.twinhead.morechests.screen.GoldChestScreenHandler;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -38,7 +37,7 @@ public class DiamondChestScreen extends HandledScreen<DiamondChestScreenHandler>
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int i = (width - backgroundWidth) / 2;
