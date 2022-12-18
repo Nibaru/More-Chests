@@ -14,7 +14,6 @@ public class BlockEntityRegistry {
     public static BlockEntityType<BasicChestBlockEntity> CRIMSON_PLANK_CHEST;
     public static BlockEntityType<BasicChestBlockEntity> DARK_OAK_PLANK_CHEST;
     public static BlockEntityType<BasicChestBlockEntity> JUNGLE_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> MANGROVE_PLANK_CHEST;
     public static BlockEntityType<BasicChestBlockEntity> OAK_PLANK_CHEST;
     public static BlockEntityType<BasicChestBlockEntity> SPRUCE_PLANK_CHEST;
     public static BlockEntityType<BasicChestBlockEntity> WARPED_PLANK_CHEST;
@@ -34,7 +33,6 @@ public class BlockEntityRegistry {
         CRIMSON_PLANK_CHEST = register(ChestTypes.CRIMSON_PLANK, BlockRegistry.CRIMSON_PLANK_CHEST);
         DARK_OAK_PLANK_CHEST = register(ChestTypes.DARK_OAK_PLANK, BlockRegistry.DARK_OAK_PLANK_CHEST);
         JUNGLE_PLANK_CHEST = register(ChestTypes.JUNGLE_PLANK, BlockRegistry.JUNGLE_PLANK_CHEST);
-        MANGROVE_PLANK_CHEST = register(ChestTypes.MANGROVE_PLANK, BlockRegistry.MANGROVE_PLANK_CHEST);
         OAK_PLANK_CHEST = register(ChestTypes.OAK_PLANK, BlockRegistry.OAK_PLANK_CHEST);
         SPRUCE_PLANK_CHEST = register(ChestTypes.SPRUCE_PLANK, BlockRegistry.SPRUCE_PLANK_CHEST);
         WARPED_PLANK_CHEST = register(ChestTypes.WARPED_PLANK, BlockRegistry.WARPED_PLANK_CHEST);

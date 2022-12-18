@@ -13,7 +13,6 @@ public class ModBlockEntityRendererRegistry {
         BlockEntityRendererRegistry.register(BlockEntityRegistry.CRIMSON_PLANK_CHEST, ChestEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.DARK_OAK_PLANK_CHEST, ChestEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.JUNGLE_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityRegistry.MANGROVE_PLANK_CHEST, ChestEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.OAK_PLANK_CHEST, ChestEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.SPRUCE_PLANK_CHEST, ChestEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.WARPED_PLANK_CHEST, ChestEntityRenderer::new);

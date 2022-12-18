@@ -20,7 +20,6 @@ public class BlockRegistry {
     public static final BasicChestBlock CRIMSON_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS), ChestTypes.CRIMSON_PLANK);
     public static final BasicChestBlock DARK_OAK_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_PLANKS), ChestTypes.DARK_OAK_PLANK);
     public static final BasicChestBlock JUNGLE_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_PLANKS), ChestTypes.JUNGLE_PLANK);
-    public static final BasicChestBlock MANGROVE_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_PLANKS), ChestTypes.MANGROVE_PLANK);
     public static final BasicChestBlock OAK_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), ChestTypes.OAK_PLANK);
     public static final BasicChestBlock SPRUCE_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS), ChestTypes.SPRUCE_PLANK);
     public static final BasicChestBlock WARPED_PLANK_CHEST = new BasicChestBlock(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS), ChestTypes.WARPED_PLANK);
@@ -46,7 +45,6 @@ public class BlockRegistry {
         registerBlock(ChestTypes.CRIMSON_PLANK.getId(), CRIMSON_PLANK_CHEST);
         registerBlock(ChestTypes.DARK_OAK_PLANK.getId(), DARK_OAK_PLANK_CHEST);
         registerBlock(ChestTypes.JUNGLE_PLANK.getId(), JUNGLE_PLANK_CHEST);
-        registerBlock(ChestTypes.MANGROVE_PLANK.getId(), MANGROVE_PLANK_CHEST);
         registerBlock(ChestTypes.OAK_PLANK.getId(), OAK_PLANK_CHEST);
         registerBlock(ChestTypes.SPRUCE_PLANK.getId(), SPRUCE_PLANK_CHEST);
         registerBlock(ChestTypes.WARPED_PLANK.getId(), WARPED_PLANK_CHEST);

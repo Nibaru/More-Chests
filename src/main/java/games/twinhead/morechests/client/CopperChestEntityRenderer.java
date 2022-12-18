@@ -7,7 +7,7 @@ import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.LidOpenable;
+import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
@@ -24,7 +24,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
-public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
+public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & ChestAnimationProgress> extends ChestBlockEntityRenderer<T> {
 
     private final ModelPart chestLid;
     private final ModelPart chestBase;
@@ -58,7 +58,7 @@ public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpen
             }
 
 
-            float g = ((Float2FloatFunction)properties.apply(ChestBlock.getAnimationProgressRetriever((LidOpenable)entity))).get(tickDelta);
+            float g = ((Float2FloatFunction)properties.apply(ChestBlock.getAnimationProgressRetriever((ChestAnimationProgress)entity))).get(tickDelta);
             g = 1.0F - g;
             g = 1.0F - g * g * g;
             int i = ((Int2IntFunction)properties.apply(new LightmapCoordinatesRetriever())).applyAsInt(light);

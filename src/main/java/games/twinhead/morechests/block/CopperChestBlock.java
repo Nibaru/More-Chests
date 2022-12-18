@@ -7,8 +7,9 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class CopperChestBlock extends BasicChestBlock implements Oxidizable {
 

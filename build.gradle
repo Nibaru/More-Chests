@@ -27,9 +27,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi "dev.architectury:architectury-fabric:6.4.62"
-    modApi "me.shedaniel:RoughlyEnoughItems-fabric:9.1.580"
-    modApi "me.shedaniel.cloth:cloth-config-fabric:8.2.88"
+    modApi "dev.architectury:architectury-fabric:4.10.88"
+    modApi "me.shedaniel:RoughlyEnoughItems-fabric:8.3.583"
+    modApi "me.shedaniel.cloth:cloth-config-fabric:6.4.90"
 }
 
 processResources {
@@ -121,7 +121,6 @@ curseforge {
             displayName = "v" + project.mod_version + " Fabric " + project.minecraft_version
         }
         changelogType = 'markdown'
-        changelog = file('changelog.md')
         releaseType = 'release'
         addGameVersion "Fabric"
         addGameVersion "Quilt"
