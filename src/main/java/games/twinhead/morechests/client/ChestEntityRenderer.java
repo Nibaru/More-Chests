@@ -2,7 +2,6 @@ package games.twinhead.morechests.client;
 
 import games.twinhead.morechests.block.BasicChestBlock;
 import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.ChestBlockEntity;

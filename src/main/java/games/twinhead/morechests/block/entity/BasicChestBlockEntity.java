@@ -2,8 +2,6 @@ package games.twinhead.morechests.block.entity;
 
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.screen.AbstractChestScreenHandler;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -139,7 +137,7 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
 
     }
 
-    @Environment(EnvType.CLIENT)
+
     public int countViewers() {
         return viewers;
     }
@@ -148,12 +146,10 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
 
 
     @Override
-    @Environment(EnvType.CLIENT)
     public float getAnimationProgress(float f) {
         return MathHelper.lerp(f, last, angle);
     }
 
-    @Environment(EnvType.CLIENT)
     public void clientTick() {
         progressAnimation();
 
@@ -183,7 +179,6 @@ public class BasicChestBlockEntity extends ChestBlockEntity {
         }
     }
 
-    @Environment(EnvType.CLIENT)
     private static void playSound(World world, BlockPos pos, BlockState state, SoundEvent soundEvent) {
         assert world != null;
         world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, soundEvent, SoundCategory.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F, false);

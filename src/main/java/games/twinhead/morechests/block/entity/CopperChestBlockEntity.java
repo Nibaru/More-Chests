@@ -11,8 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CopperChestBlockEntity extends BasicChestBlockEntity{
     public CopperChestBlockEntity(BlockPos pos, BlockState state, ChestTypes type) {
-        super(BlockEntityRegistry.COPPER_CHEST, pos, state, type);
-
+        super(BlockEntityRegistry.COPPER_CHEST.get(), pos, state, type);
     }
 
     @Nullable

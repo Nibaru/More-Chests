@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "more_chests:copper_chest",
+    "more_chests:exposed_copper_chest",
+    "more_chests:weathered_copper_chest",
+    "more_chests:oxidized_copper_chest"
+  ]
+}

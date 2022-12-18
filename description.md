@@ -19,8 +19,8 @@ To upgrade your chests, simply sneak-click on the chest with the required ingred
 - Diamond Chest (9 x 12)  108 Slots
 - Netherite Chest (9 x 18)  162 Slots
 
-
-
+### Copper Chests On Forge*
+Copper chests are unable to oxidize on forge. To get a different oxidization level on a copper chest simply right-click a chest with any oxidized block and it will copy the oxidization level
 
 
 

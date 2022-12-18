@@ -1,22 +1,15 @@
 package games.twinhead.morechests.block;
 
 import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 public class BasicChestBlock extends ChestBlock {
 
@@ -25,6 +18,11 @@ public class BasicChestBlock extends ChestBlock {
     public BasicChestBlock(Settings settings, ChestTypes type) {
         super(settings, type::getBlockEntityType);
         this.type = type;
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Nullable

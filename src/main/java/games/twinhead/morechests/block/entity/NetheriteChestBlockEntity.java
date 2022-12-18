@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class NetheriteChestBlockEntity extends BasicChestBlockEntity {
     public NetheriteChestBlockEntity(BlockPos pos, BlockState state, ChestTypes type) {
-        super(BlockEntityRegistry.NETHERITE_CHEST, pos, state, type);
+        super(BlockEntityRegistry.NETHERITE_CHEST.get(), pos, state, type);
     }
 
     @Nullable

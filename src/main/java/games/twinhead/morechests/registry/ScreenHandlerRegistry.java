@@ -2,38 +2,26 @@ package games.twinhead.morechests.registry;
 
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.screen.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.Identifier;
+import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ScreenHandlerRegistry {
 
-    public static ScreenHandlerType<BasicChestScreenHandler> BASIC_CHEST_SCREEN_HANDLER;
-    public static ScreenHandlerType<IronChestScreenHandler> IRON_CHEST_SCREEN_HANDLER;
-    public static ScreenHandlerType<GoldChestScreenHandler> GOLD_CHEST_SCREEN_HANDLER;
-    public static ScreenHandlerType<DiamondChestScreenHandler> DIAMOND_CHEST_SCREEN_HANDLER;
-    public static ScreenHandlerType<NetheriteChestScreenHandler> NETHERITE_CHEST_SCREEN_HANDLER;
-    public static ScreenHandlerType<CopperChestScreenHandler> COPPER_CHEST_SCREEN_HANDLER;
+    private static final DeferredRegister<ScreenHandlerType<?>> SCREEN_HANDLERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MoreChests.MOD_ID);
+
+
+    public static final RegistryObject<ScreenHandlerType<BasicChestScreenHandler>> BASIC_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("basic_chest_screen_handler", () -> IForgeMenuType.create(BasicChestScreenHandler::new));
+    public static final RegistryObject<ScreenHandlerType<IronChestScreenHandler>> IRON_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("iron_chest_screen_handler", () -> IForgeMenuType.create(IronChestScreenHandler::new));
+    public static final RegistryObject<ScreenHandlerType<GoldChestScreenHandler>> GOLD_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("gold_chest_screen_handler", () -> IForgeMenuType.create(GoldChestScreenHandler::new));
+    public static final RegistryObject<ScreenHandlerType<DiamondChestScreenHandler>> DIAMOND_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("diamond_chest_screen_handler", () -> IForgeMenuType.create(DiamondChestScreenHandler::new));
+    public static final RegistryObject<ScreenHandlerType<NetheriteChestScreenHandler>> NETHERITE_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("netherite_chest_screen_handler", () -> IForgeMenuType.create(NetheriteChestScreenHandler::new));
+    public static final RegistryObject<ScreenHandlerType<CopperChestScreenHandler>> COPPER_CHEST_SCREEN_HANDLER = SCREEN_HANDLERS.register("copper_chest_screen_handler", () -> IForgeMenuType.create(CopperChestScreenHandler::new));
 
     public static void registerAllScreenHandlers() {
-        BASIC_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(BasicChestScreenHandler::new);
-        IRON_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(IronChestScreenHandler::new);
-        GOLD_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(GoldChestScreenHandler::new);
-        DIAMOND_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(DiamondChestScreenHandler::new);
-        NETHERITE_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(NetheriteChestScreenHandler::new);
-        COPPER_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(CopperChestScreenHandler::new);
-
-
-        Registry.register(Registries.SCREEN_HANDLER, id("basic_chest_screen_handler"), BASIC_CHEST_SCREEN_HANDLER);
-        Registry.register(Registries.SCREEN_HANDLER, id("iron_chest_screen_handler"), IRON_CHEST_SCREEN_HANDLER);
-        Registry.register(Registries.SCREEN_HANDLER, id("gold_chest_screen_handler"), GOLD_CHEST_SCREEN_HANDLER);
-        Registry.register(Registries.SCREEN_HANDLER, id("diamond_chest_screen_handler"), DIAMOND_CHEST_SCREEN_HANDLER);
-        Registry.register(Registries.SCREEN_HANDLER, id("netherite_chest_screen_handler"), NETHERITE_CHEST_SCREEN_HANDLER);
-        Registry.register(Registries.SCREEN_HANDLER, id("copper_chest_screen_handler"), COPPER_CHEST_SCREEN_HANDLER);
-    }
-
-    private static Identifier id(String path){
-        return new Identifier(MoreChests.MOD_ID, path);
+        SCREEN_HANDLERS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }

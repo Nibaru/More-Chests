@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class GoldChestBlockEntity extends BasicChestBlockEntity{
     public GoldChestBlockEntity(BlockPos pos, BlockState state, ChestTypes type) {
-        super(BlockEntityRegistry.GOLD_CHEST, pos, state, type);
+        super(BlockEntityRegistry.GOLD_CHEST.get(), pos, state, type);
 
     }
 

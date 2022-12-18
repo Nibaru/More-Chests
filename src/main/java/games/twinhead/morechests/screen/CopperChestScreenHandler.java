@@ -3,22 +3,20 @@ package games.twinhead.morechests.screen;
 
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.registry.ScreenHandlerRegistry;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
 
 public class CopperChestScreenHandler extends AbstractChestScreenHandler {
 
-    public CopperChestScreenHandler(int syncId, PlayerInventory inventory) {
+    public CopperChestScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf packetByteBuf) {
         this(syncId, inventory, new SimpleInventory(ChestTypes.COPPER.size()));
     }
 
     public CopperChestScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
-        super(ScreenHandlerRegistry.COPPER_CHEST_SCREEN_HANDLER, ChestTypes.COPPER, syncId, playerInventory);
+        super(ScreenHandlerRegistry.COPPER_CHEST_SCREEN_HANDLER.get(), ChestTypes.COPPER, syncId, playerInventory);
         checkSize(inventory, type.size());
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class IronChestBlockEntity extends BasicChestBlockEntity{
     public IronChestBlockEntity(BlockPos pos, BlockState state, ChestTypes type) {
-        super(BlockEntityRegistry.IRON_CHEST, pos, state, type);
+        super(BlockEntityRegistry.IRON_CHEST.get(), pos, state, type);
     }
 
     @Nullable

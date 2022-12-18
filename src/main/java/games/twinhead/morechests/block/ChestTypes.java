@@ -3,7 +3,6 @@ package games.twinhead.morechests.block;
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.entity.*;
 import games.twinhead.morechests.registry.BlockEntityRegistry;
-import games.twinhead.morechests.registry.ScreenHandlerRegistry;
 import games.twinhead.morechests.screen.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
@@ -57,20 +56,20 @@ public enum ChestTypes {
 
     public BlockEntityType<? extends BasicChestBlockEntity> getBlockEntityType() {
         return switch (this) {
-            case COPPER -> BlockEntityRegistry.COPPER_CHEST;
-            case IRON -> BlockEntityRegistry.IRON_CHEST;
-            case GOLD -> BlockEntityRegistry.GOLD_CHEST;
-            case DIAMOND -> BlockEntityRegistry.DIAMOND_CHEST;
-            case NETHERITE -> BlockEntityRegistry.NETHERITE_CHEST;
-            case ACACIA_PLANK -> BlockEntityRegistry.ACACIA_PLANK_CHEST;
-            case BIRCH_PLANK -> BlockEntityRegistry.BIRCH_PLANK_CHEST;
-            case CRIMSON_PLANK -> BlockEntityRegistry.CRIMSON_PLANK_CHEST;
-            case DARK_OAK_PLANK -> BlockEntityRegistry.DARK_OAK_PLANK_CHEST;
-            case JUNGLE_PLANK -> BlockEntityRegistry.JUNGLE_PLANK_CHEST;
-            case MANGROVE_PLANK -> BlockEntityRegistry.MANGROVE_PLANK_CHEST;
-            case OAK_PLANK -> BlockEntityRegistry.OAK_PLANK_CHEST;
-            case SPRUCE_PLANK -> BlockEntityRegistry.SPRUCE_PLANK_CHEST;
-            case WARPED_PLANK -> BlockEntityRegistry.WARPED_PLANK_CHEST;
+            case COPPER -> BlockEntityRegistry.COPPER_CHEST.get();
+            case IRON -> BlockEntityRegistry.IRON_CHEST.get();
+            case GOLD -> BlockEntityRegistry.GOLD_CHEST.get();
+            case DIAMOND -> BlockEntityRegistry.DIAMOND_CHEST.get();
+            case NETHERITE -> BlockEntityRegistry.NETHERITE_CHEST.get();
+            case ACACIA_PLANK -> BlockEntityRegistry.ACACIA_PLANK_CHEST.get();
+            case BIRCH_PLANK -> BlockEntityRegistry.BIRCH_PLANK_CHEST.get();
+            case CRIMSON_PLANK -> BlockEntityRegistry.CRIMSON_PLANK_CHEST.get();
+            case DARK_OAK_PLANK -> BlockEntityRegistry.DARK_OAK_PLANK_CHEST.get();
+            case JUNGLE_PLANK -> BlockEntityRegistry.JUNGLE_PLANK_CHEST.get();
+            case MANGROVE_PLANK -> BlockEntityRegistry.MANGROVE_PLANK_CHEST.get();
+            case OAK_PLANK -> BlockEntityRegistry.OAK_PLANK_CHEST.get();
+            case SPRUCE_PLANK -> BlockEntityRegistry.SPRUCE_PLANK_CHEST.get();
+            case WARPED_PLANK -> BlockEntityRegistry.WARPED_PLANK_CHEST.get();
 
         };
     }
