@@ -2,9 +2,6 @@
 
 ## 1.0.2 for Fabric 1.19.2
 
-### Changed
-- Changed the 
-
 ### Fixed
 - Issue causing server crash when a chest is opened
 - Fixed positioning of player inventory title in wooden and copper chests
