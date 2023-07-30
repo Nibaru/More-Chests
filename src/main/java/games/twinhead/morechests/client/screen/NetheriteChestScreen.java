@@ -13,20 +13,16 @@ import net.minecraft.util.Identifier;
 
 public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHandler> {
 
-    public final int rows = ChestTypes.NETHERITE.rows;
-    public final int columns = ChestTypes.NETHERITE.columns;
-
     private static final Identifier TEXTURE =
             new Identifier(MoreChests.MOD_ID, "textures/gui/container/generic_6x12_separated.png");
 
     public NetheriteChestScreen(NetheriteChestScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.passEvents = false;
-        this.backgroundHeight = 55 + this.rows * 18 + 3 * 18 ;
+        this.backgroundHeight = 55 + ChestTypes.NETHERITE.rows * 18 + 3 * 18 ;
         this.playerInventoryTitleY = this.backgroundHeight - 89;
-        this.playerInventoryTitleX = this.backgroundWidth - 114 ;
-        this.backgroundWidth = 284;
-        this.titleX = titleX - 27;
+        this.playerInventoryTitleX = this.backgroundWidth - 87 ;
+        this.backgroundWidth = 284 + 54;
     }
 
     public int getBackgroundWidth(){
@@ -49,8 +45,10 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
 
-        int i = (width - backgroundWidth) / 2;
+        int i = ((width - backgroundWidth) / 2) + 27;
         int j = (height - backgroundHeight) / 2;
+
+
 
 
         this.drawTexture(matrices, i + 27, j, 0, 0, this.backgroundWidth - 60, 3 * 18 + 17);
@@ -62,7 +60,7 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
         this.drawTexture(matrices, i + 18 * 14 -2, j, 169, 0, 18 * 3 + 7, 3 * 18 + 17);
 
         //middle
-        this.drawTexture(matrices, i + 27, j + 3 * 18 + 17,  0, 17, this.backgroundWidth - 42, 115);
+        this.drawTexture(matrices, i + 27, j + 3 * 18 + 17,  0, 17, 18*12 +7, 115);
 
         //bottom Left
         this.drawTexture(matrices, i - 27, j + 3 * 18 + 17,  0, 17, 18 * 3 + 7, 115);
@@ -73,6 +71,10 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
         //inventory
         this.drawTexture(matrices, i + 54, j + 9 * 18 + 21,  0, 133, 18 * 12, 96);
         //this.drawTexture(matrices, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
+
+
+        this.drawHorizontalLine(matrices, 0, 284, 30, 255);
+
     }
 
     @Override
