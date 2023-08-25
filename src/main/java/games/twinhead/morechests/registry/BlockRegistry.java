@@ -8,7 +8,9 @@ import games.twinhead.morechests.block.WaxedCopperChestBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Oxidizable;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -82,6 +84,8 @@ public class BlockRegistry {
 
     }
 
+
+
     public static void registerBlock(Identifier id, Block block){
         Registry.register(Registries.BLOCK, id, block);
         registerBlockItem(id, block);
@@ -92,7 +96,6 @@ public class BlockRegistry {
      public static void registerBlockItem(Identifier id, Block block){
          Item item = Registry.register(Registries.ITEM, id, new BlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof() :new Item.Settings() )));
          ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(item));
-         ItemGroupEvents.modifyEntriesEvent(MoreChests.MOD_GROUP).register(entries -> entries.add(item));
      }
 
 }

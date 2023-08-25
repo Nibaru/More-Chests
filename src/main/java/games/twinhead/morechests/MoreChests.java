@@ -41,8 +41,9 @@ public class MoreChests implements ModInitializer {
     public static final TagKey<Item> DIAMOND_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "diamond_chest_upgrade_item"));
     public static final TagKey<Item> NETHERITE_CHEST_UPGRADE_ITEM = TagKey.of(RegistryKeys.ITEM, new Identifier(MoreChests.MOD_ID, "netherite_chest_upgrade_item"));
 
-    public static ItemGroup MOD_GROUP  = FabricItemGroup.builder(new Identifier(MoreChests.MOD_ID, "more_chests_tab"))
-            .icon(()-> new ItemStack(BlockRegistry.DIAMOND_CHEST))
+    public static ItemGroup MOD_GROUP  = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(BlockRegistry.DIAMOND_CHEST))
+            .displayName(Text.translatable("itemGroup.more_chests.more_chests_tab"))
             .build();
 
     @Override
