@@ -1,5 +1,10 @@
 ## More Chests Changelog
 
+### 1.0.3 for Fabric 1.19.4
+#### Updated to 1.19.4
+#### Fixed
+- Issue causing items in the outer columns of the netherite chest to drop when picked up.
+
 ### 1.0.2 for Fabric 1.19.3
 #### Fixed
 - Issue causing server crash when a chest is opened

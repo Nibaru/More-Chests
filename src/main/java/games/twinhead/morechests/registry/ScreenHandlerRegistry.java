@@ -4,6 +4,7 @@ import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.screen.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 
@@ -17,12 +18,12 @@ public class ScreenHandlerRegistry {
     public static ScreenHandlerType<CopperChestScreenHandler> COPPER_CHEST_SCREEN_HANDLER;
 
     public static void registerAllScreenHandlers() {
-        BASIC_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(BasicChestScreenHandler::new);
-        IRON_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(IronChestScreenHandler::new);
-        GOLD_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(GoldChestScreenHandler::new);
-        DIAMOND_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(DiamondChestScreenHandler::new);
-        NETHERITE_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(NetheriteChestScreenHandler::new);
-        COPPER_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(CopperChestScreenHandler::new);
+        BASIC_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(BasicChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
+        IRON_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(IronChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
+        GOLD_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(GoldChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
+        DIAMOND_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(DiamondChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
+        NETHERITE_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(NetheriteChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
+        COPPER_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(CopperChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
 
 
         Registry.register(Registries.SCREEN_HANDLER, id("basic_chest_screen_handler"), BASIC_CHEST_SCREEN_HANDLER);

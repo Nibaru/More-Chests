@@ -1,26 +1,25 @@
 package games.twinhead.morechests.block;
 
 import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 public class BasicChestBlock extends ChestBlock {
 
     public final ChestTypes type;
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public BasicChestBlock(Settings settings, ChestTypes type) {
         super(settings, type::getBlockEntityType);
@@ -36,9 +35,9 @@ public class BasicChestBlock extends ChestBlock {
     public ChestTypes getType(){return type;}
 
 
-        @Override
+    @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        Direction direction = context.getPlayerFacing().getOpposite();
+        Direction direction = context.getHorizontalPlayerFacing().getOpposite();
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
         return this.getDefaultState().with(FACING, direction).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }

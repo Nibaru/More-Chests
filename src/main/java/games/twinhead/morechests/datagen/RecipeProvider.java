@@ -4,15 +4,12 @@ import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.registry.BlockRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.SmithingRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
@@ -45,7 +42,6 @@ public class RecipeProvider extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, BlockRegistry.IRON_CHEST, 1).group("metal_chests").criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).criterion(hasItem(BlockRegistry.IRON_CHEST), conditionsFromItem(BlockRegistry.IRON_CHEST)).criterion("has_wooden_chest", conditionsFromTag(MoreChests.WOODEN_CHESTS)).input('#', Items.IRON_INGOT).input('C', MoreChests.WOODEN_CHESTS).pattern("###").pattern("#C#").pattern("###").offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, BlockRegistry.GOLD_CHEST, 1).group("metal_chests").criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT)).criterion(hasItem(BlockRegistry.GOLD_CHEST), conditionsFromItem(BlockRegistry.GOLD_CHEST)).criterion("has_upgrade_chest", conditionsFromTag(MoreChests.GOLD_UPGRADE_CHESTS)).input('#', Items.GOLD_INGOT).input('C', MoreChests.GOLD_UPGRADE_CHESTS).pattern("###").pattern("#C#").pattern("###").offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, BlockRegistry.DIAMOND_CHEST, 1).group("metal_chests").criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND)).criterion(hasItem(BlockRegistry.DIAMOND_CHEST), conditionsFromItem(BlockRegistry.DIAMOND_CHEST)).criterion(hasItem(BlockRegistry.GOLD_CHEST), conditionsFromItem(BlockRegistry.GOLD_CHEST)).input('#', Items.DIAMOND).input('C', BlockRegistry.GOLD_CHEST).pattern("###").pattern("#C#").pattern("###").offerTo(exporter);
-        SmithingRecipeJsonBuilder.create(Ingredient.ofItems(BlockRegistry.DIAMOND_CHEST), Ingredient.ofItems(Items.NETHERITE_INGOT), RecipeCategory.DECORATIONS, BlockRegistry.NETHERITE_CHEST.asItem()).criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT)).criterion(hasItem(BlockRegistry.DIAMOND_CHEST), conditionsFromItem(BlockRegistry.DIAMOND_CHEST)).offerTo(exporter,"netherite_chest");
     }
 
     public void generateWoodenChestRecipes(ItemConvertible plank, TagKey<Item> log, ItemConvertible chest, String name, Consumer<RecipeJsonProvider> exporter){
