@@ -45,22 +45,22 @@ public class RecipeGenerator extends FabricRecipeProvider {
         generateWoodenChestRecipes(Blocks.BAMBOO_PLANKS, ItemTags.BAMBOO_BLOCKS, BlockRegistry.BAMBOO_PLANK_CHEST, "bamboo", exporter);
         generateWoodenChestRecipes(Blocks.CHERRY_PLANKS, ItemTags.CHERRY_LOGS, BlockRegistry.CHERRY_PLANK_CHEST, "cherry", exporter);
 
-        generateWoolChestRecipes(Blocks.WHITE_WOOL, BlockRegistry.WHITE_WOOL_CHEST, "white", exporter);
-        generateWoolChestRecipes(Blocks.ORANGE_WOOL, BlockRegistry.ORANGE_WOOL_CHEST, "orange", exporter);
-        generateWoolChestRecipes(Blocks.MAGENTA_WOOL, BlockRegistry.MAGENTA_WOOL_CHEST, "magenta", exporter);
-        generateWoolChestRecipes(Blocks.LIGHT_BLUE_WOOL, BlockRegistry.LIGHT_BLUE_WOOL_CHEST, "light_blue", exporter);
-        generateWoolChestRecipes(Blocks.YELLOW_WOOL, BlockRegistry.YELLOW_WOOL_CHEST, "yellow", exporter);
-        generateWoolChestRecipes(Blocks.LIME_WOOL, BlockRegistry.LIME_WOOL_CHEST, "lime", exporter);
-        generateWoolChestRecipes(Blocks.PINK_WOOL, BlockRegistry.PINK_WOOL_CHEST, "pink", exporter);
-        generateWoolChestRecipes(Blocks.GRAY_WOOL, BlockRegistry.GRAY_WOOL_CHEST, "gray", exporter);
-        generateWoolChestRecipes(Blocks.LIGHT_GRAY_WOOL, BlockRegistry.LIGHT_GRAY_WOOL_CHEST, "light_gray", exporter);
-        generateWoolChestRecipes(Blocks.CYAN_WOOL, BlockRegistry.CYAN_WOOL_CHEST, "cyan", exporter);
-        generateWoolChestRecipes(Blocks.PURPLE_WOOL, BlockRegistry.PURPLE_WOOL_CHEST, "purple", exporter);
-        generateWoolChestRecipes(Blocks.BLUE_WOOL, BlockRegistry.BLUE_WOOL_CHEST, "blue", exporter);
-        generateWoolChestRecipes(Blocks.BROWN_WOOL, BlockRegistry.BROWN_WOOL_CHEST, "brown", exporter);
-        generateWoolChestRecipes(Blocks.GREEN_WOOL, BlockRegistry.GREEN_WOOL_CHEST, "green", exporter);
-        generateWoolChestRecipes(Blocks.RED_WOOL, BlockRegistry.RED_WOOL_CHEST, "red", exporter);
-        generateWoolChestRecipes(Blocks.BLACK_WOOL, BlockRegistry.BLACK_WOOL_CHEST, "black", exporter);
+        generateWoolChestRecipes(Blocks.WHITE_WOOL, BlockRegistry.WHITE_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.ORANGE_WOOL, BlockRegistry.ORANGE_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.MAGENTA_WOOL, BlockRegistry.MAGENTA_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.LIGHT_BLUE_WOOL, BlockRegistry.LIGHT_BLUE_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.YELLOW_WOOL, BlockRegistry.YELLOW_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.LIME_WOOL, BlockRegistry.LIME_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.PINK_WOOL, BlockRegistry.PINK_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.GRAY_WOOL, BlockRegistry.GRAY_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.LIGHT_GRAY_WOOL, BlockRegistry.LIGHT_GRAY_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.CYAN_WOOL, BlockRegistry.CYAN_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.PURPLE_WOOL, BlockRegistry.PURPLE_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.BLUE_WOOL, BlockRegistry.BLUE_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.BROWN_WOOL, BlockRegistry.BROWN_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.GREEN_WOOL, BlockRegistry.GREEN_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.RED_WOOL, BlockRegistry.RED_WOOL_CHEST, exporter);
+        generateWoolChestRecipes(Blocks.BLACK_WOOL, BlockRegistry.BLACK_WOOL_CHEST, exporter);
 
         //TODO generate otehr recipes
 
@@ -118,9 +118,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 1).input(ModTags.WOODEN_CHESTS).input(plank).group("wooden_chests").criterion(hasItem(chest), conditionsFromItem(chest)).offerTo(exporter, new Identifier(MoreChests.MOD_ID, name + "_plank_chest_planks"));
     }
 
-    public void generateWoolChestRecipes(ItemConvertible wool,  ItemConvertible craftedChest, String name, RecipeExporter exporter){
+    public void generateWoolChestRecipes(ItemConvertible wool,  ItemConvertible craftedChest, RecipeExporter exporter){
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, craftedChest, 1).group("wool_chests").criterion(hasItem(wool), conditionsFromItem(wool)).criterion(hasItem(craftedChest), conditionsFromItem(craftedChest)).input('#', wool).pattern("###").pattern("# #").pattern("###").offerTo(exporter);
-        //ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, craftedChest, 1).input(MoreChests.WOOL_CHESTS).input(TagKey.of(RegistryKeys.ITEM, new Identifier("c:" + name +"_dyes"))).group("wool_chests").criterion(hasItem(craftedChest), conditionsFromItem(craftedChest)).offerTo(exporter, new Identifier(MoreChests.MOD_ID, name + "_from_dye"));
     }
 
     public void offerCustomDyeableRecipes(RecipeExporter exporter, List<Identifier> dyeTags, List<Item> dyeables, String group) {

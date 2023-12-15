@@ -82,7 +82,7 @@ public class WoolChestBlock extends BasicChestBlock {
                         if (chestBlockEntity.hasCustomName()) {
                             return chestBlockEntity.getDisplayName();
                         } else {
-                            return (Text) (chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString())));
+                            return chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString()));
                         }
                     }
                 });

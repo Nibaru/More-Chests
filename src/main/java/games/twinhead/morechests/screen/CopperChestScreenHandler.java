@@ -20,8 +20,6 @@ public class CopperChestScreenHandler extends AbstractChestScreenHandler {
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
 
-        int i = (type.rows - 4) * 18;
-
         int j;
         int k;
         for(j = 0; j < type.rows; ++j) {

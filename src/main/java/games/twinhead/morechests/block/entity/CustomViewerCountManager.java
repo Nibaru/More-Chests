@@ -1,7 +1,6 @@
 package games.twinhead.morechests.block.entity;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.TypeFilter;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +13,6 @@ import net.minecraft.world.event.GameEvent;
  * ender chests, and barrels.
  */
 public abstract class CustomViewerCountManager {
-    private static final int SCHEDULE_TICK_DELAY = 5;
     public int viewerCount;
 
     /**
@@ -42,7 +40,7 @@ public abstract class CustomViewerCountManager {
         int i;
         if ((i = this.viewerCount++) == 0) {
             this.onContainerOpen(world, pos, state);
-            world.emitGameEvent((Entity)player, GameEvent.CONTAINER_OPEN, pos);
+            world.emitGameEvent(player, GameEvent.CONTAINER_OPEN, pos);
             CustomViewerCountManager.scheduleBlockTick(world, pos, state);
         }
         this.onViewerCountUpdate(world, pos, state, i, this.viewerCount);
@@ -52,7 +50,7 @@ public abstract class CustomViewerCountManager {
         int i = this.viewerCount--;
         if (this.viewerCount == 0) {
             this.onContainerClose(world, pos, state);
-            world.emitGameEvent((Entity)player, GameEvent.CONTAINER_CLOSE, pos);
+            world.emitGameEvent(player, GameEvent.CONTAINER_CLOSE, pos);
         }
         this.onViewerCountUpdate(world, pos, state, i, this.viewerCount);
     }
@@ -61,7 +59,6 @@ public abstract class CustomViewerCountManager {
         int i = pos.getX();
         int j = pos.getY();
         int k = pos.getZ();
-        float f = 5.0f;
         Box box = new Box((float)i - 5.0f, (float)j - 5.0f, (float)k - 5.0f, (float)(i + 1) + 5.0f, (float)(j + 1) + 5.0f, (float)(k + 1) + 5.0f);
         return world.getEntitiesByType(TypeFilter.instanceOf(PlayerEntity.class), box, this::isPlayerViewing).size();
     }

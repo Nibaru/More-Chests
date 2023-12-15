@@ -11,21 +11,7 @@ import net.minecraft.util.DyeColor;
 
 public class WoolChestScreenHandler extends AbstractChestScreenHandler {
 
-    private DyeColor dyeColor;
-//    public WoolChestScreenHandler(ScreenHandlerType type, int syncId, PlayerInventory inventory, DyeColor color) {
-//        this(type ,syncId, inventory, new SimpleInventory(27), color, false);
-//    }
-//
-//    public WoolChestScreenHandler(ScreenHandlerType type, int syncId, PlayerInventory playerInventory, Inventory inventory, DyeColor color, boolean isDouble) {
-//        super(type, ChestTypes.WOOL ,syncId, playerInventory);
-//        this.dyeColor = color;
-//        checkSize(inventory, 27 * (isDouble ? 2 : 1));
-//        this.inventory = inventory;
-//        inventory.onOpen(playerInventory.player);
-//
-//        addChestInventory(inventory, 0, 0);
-//        addPlayerInventoryAndHotbar(playerInventory, 0, 4);
-//    }
+    private final DyeColor dyeColor;
 
     private WoolChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, DyeColor color, int rows) {
         this(type, ChestTypes.WOOL, syncId, playerInventory, new SimpleInventory(9 * rows), color, rows);
@@ -63,8 +49,6 @@ public class WoolChestScreenHandler extends AbstractChestScreenHandler {
     public DyeColor getColor(){
         return this.dyeColor;
     }
-
-
 
     public static ScreenHandlerType<?> getScreenHandlerFromColor(DyeColor color, int rows){
         if (rows > 3)

@@ -51,16 +51,13 @@ public class CopperChestBlock extends BasicChestBlock implements Oxidizable {
 
     public void tickDegradation(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(ChestBlock.CHEST_TYPE) == ChestType.RIGHT) return;
-        float f = 0.05688889F;
         if (random.nextFloat() < 0.05688889F) {
-
             switch (state.get(ChestBlock.CHEST_TYPE)) {
                 case LEFT:
                     Oxidizable.getIncreasedOxidationBlock(state.getBlock()).ifPresent((oxidized) -> {
                         world.setBlockState(pos, oxidized.getStateWithProperties(state).with(ChestBlock.CHEST_TYPE, ChestType.LEFT));
                         world.setBlockState(pos.offset(state.get(FACING).rotateYClockwise(), 1), oxidized.getStateWithProperties(world.getBlockState(pos.offset(state.get(FACING).rotateYClockwise()))).with(ChestBlock.CHEST_TYPE, ChestType.RIGHT));
                     });
-
                     break;
                 case SINGLE:
                     Oxidizable.getIncreasedOxidationBlock(state.getBlock()).ifPresent((oxidized) -> world.setBlockState(pos, oxidized.getStateWithProperties(state)));
@@ -74,7 +71,6 @@ public class CopperChestBlock extends BasicChestBlock implements Oxidizable {
         if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
-
         if (neighborState.isOf(this) && direction.getAxis().isHorizontal()) {
             ChestType chestType = neighborState.get(CHEST_TYPE);
             if (state.get(CHEST_TYPE) == ChestType.SINGLE && chestType != ChestType.SINGLE && state.get(FACING) == neighborState.get(FACING) && getFacing(neighborState) == direction.getOpposite()) {
@@ -147,7 +143,7 @@ public class CopperChestBlock extends BasicChestBlock implements Oxidizable {
                         if (chestBlockEntity.hasCustomName()) {
                             return chestBlockEntity.getDisplayName();
                         } else {
-                            return (Text) (chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString())));
+                            return chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString()));
                         }
                     }
                 });

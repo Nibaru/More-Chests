@@ -25,29 +25,23 @@ public class ModelGenerator extends FabricModelProvider {
         BlockRegistry.CHEST_BLOCKS.forEach((id, chestBlock) -> {
             blockStateModelGenerator.registerBuiltin(id.withPrefixedPath("block/"), getParticleBlock(id, chestBlock));
             blockStateModelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(chestBlock, id.withPrefixedPath("block/")));
-            ;
         });
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        BlockRegistry.CHEST_BLOCKS.forEach((id, chestBlock) ->{
-
-            new Model(
-                    Optional.of(
-                            new Identifier(MoreChests.MOD_ID,
-                                    "block/chest_template")),
-                    Optional.empty(),
-                    TextureKey.LAYER0
-            ).upload(
-                    id.withPrefixedPath("item/"),
-                    TextureMap.of(
-                            TextureKey.LAYER0,
-                            MoreChests.id("chest/"+ ((id.toString().contains("waxed_") ? id.getPath().substring(6, id.getPath().length()) : id.getPath())))),
-                    itemModelGenerator.writer);
-        });
-
-
+        BlockRegistry.CHEST_BLOCKS.forEach((id, chestBlock) -> new Model(
+                Optional.of(
+                        new Identifier(MoreChests.MOD_ID,
+                                "block/chest_template")),
+                Optional.empty(),
+                TextureKey.LAYER0
+        ).upload(
+                id.withPrefixedPath("item/"),
+                TextureMap.of(
+                        TextureKey.LAYER0,
+                        MoreChests.id("chest/"+ ((id.toString().contains("waxed_") ? id.getPath().substring(6, id.getPath().length()) : id.getPath())))),
+                itemModelGenerator.writer));
     }
 
     private Block getParticleBlock(Identifier id, BasicChestBlock chestBlock){
