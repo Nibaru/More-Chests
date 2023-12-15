@@ -2,46 +2,47 @@ package games.twinhead.morechests.registry;
 
 import games.twinhead.morechests.block.BasicChestBlock;
 import games.twinhead.morechests.block.ChestTypes;
-import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
+import games.twinhead.morechests.block.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class BlockEntityRegistry {
 
-    public static BlockEntityType<BasicChestBlockEntity> ACACIA_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> BIRCH_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> CRIMSON_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> DARK_OAK_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> JUNGLE_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> MANGROVE_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> OAK_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> SPRUCE_PLANK_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> WARPED_PLANK_CHEST;
+    public static BlockEntityType<BasicChestBlockEntity> PLANK_CHEST;
 
+    public static BlockEntityType<WoolChestBlockEntity> WOOL_CHEST;
 
-    public static BlockEntityType<BasicChestBlockEntity> COPPER_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> IRON_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> GOLD_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> DIAMOND_CHEST;
-    public static BlockEntityType<BasicChestBlockEntity> NETHERITE_CHEST;
+    public static BlockEntityType<CopperChestBlockEntity> COPPER_CHEST;
+    public static BlockEntityType<IronChestBlockEntity> IRON_CHEST;
+    public static BlockEntityType<GoldChestBlockEntity> GOLD_CHEST;
+    public static BlockEntityType<DiamondChestBlockEntity> DIAMOND_CHEST;
+    public static BlockEntityType<NetheriteChestBlockEntity> NETHERITE_CHEST;
 
     public static void registerBlockEntities() {
 
 
-        ACACIA_PLANK_CHEST = register(ChestTypes.ACACIA_PLANK, BlockRegistry.ACACIA_PLANK_CHEST);
-        BIRCH_PLANK_CHEST = register(ChestTypes.BIRCH_PLANK, BlockRegistry.BIRCH_PLANK_CHEST);
-        CRIMSON_PLANK_CHEST = register(ChestTypes.CRIMSON_PLANK, BlockRegistry.CRIMSON_PLANK_CHEST);
-        DARK_OAK_PLANK_CHEST = register(ChestTypes.DARK_OAK_PLANK, BlockRegistry.DARK_OAK_PLANK_CHEST);
-        JUNGLE_PLANK_CHEST = register(ChestTypes.JUNGLE_PLANK, BlockRegistry.JUNGLE_PLANK_CHEST);
-        MANGROVE_PLANK_CHEST = register(ChestTypes.MANGROVE_PLANK, BlockRegistry.MANGROVE_PLANK_CHEST);
-        OAK_PLANK_CHEST = register(ChestTypes.OAK_PLANK, BlockRegistry.OAK_PLANK_CHEST);
-        SPRUCE_PLANK_CHEST = register(ChestTypes.SPRUCE_PLANK, BlockRegistry.SPRUCE_PLANK_CHEST);
-        WARPED_PLANK_CHEST = register(ChestTypes.WARPED_PLANK, BlockRegistry.WARPED_PLANK_CHEST);
+        PLANK_CHEST = registerBasic(ChestTypes.PLANK, BlockRegistry.ACACIA_PLANK_CHEST,
+                BlockRegistry.BIRCH_PLANK_CHEST,
+                BlockRegistry.CRIMSON_PLANK_CHEST,
+                BlockRegistry.DARK_OAK_PLANK_CHEST,
+                BlockRegistry.JUNGLE_PLANK_CHEST,
+                BlockRegistry.MANGROVE_PLANK_CHEST,
+                BlockRegistry.OAK_PLANK_CHEST,
+                BlockRegistry.SPRUCE_PLANK_CHEST,
+                BlockRegistry.WARPED_PLANK_CHEST,
+                BlockRegistry.BAMBOO_PLANK_CHEST,
+                BlockRegistry.CHERRY_PLANK_CHEST);
 
-        COPPER_CHEST = register(ChestTypes.COPPER,  BlockRegistry.COPPER_CHEST,
+        WOOL_CHEST = registerWool(ChestTypes.WOOL, BlockRegistry.WHITE_WOOL_CHEST, BlockRegistry.ORANGE_WOOL_CHEST,
+                BlockRegistry.MAGENTA_WOOL_CHEST, BlockRegistry.LIGHT_BLUE_WOOL_CHEST, BlockRegistry.YELLOW_WOOL_CHEST,
+                BlockRegistry.LIME_WOOL_CHEST, BlockRegistry.PINK_WOOL_CHEST, BlockRegistry.GRAY_WOOL_CHEST,
+                BlockRegistry.LIGHT_GRAY_WOOL_CHEST, BlockRegistry.CYAN_WOOL_CHEST, BlockRegistry.PURPLE_WOOL_CHEST,
+                BlockRegistry.BLUE_WOOL_CHEST, BlockRegistry.BROWN_WOOL_CHEST, BlockRegistry.GREEN_WOOL_CHEST,
+                BlockRegistry.RED_WOOL_CHEST, BlockRegistry.BLACK_WOOL_CHEST);
+
+        COPPER_CHEST = registerCopper(ChestTypes.COPPER,  BlockRegistry.COPPER_CHEST,
                 BlockRegistry.EXPOSED_COPPER_CHEST,
                 BlockRegistry.OXIDIZED_COPPER_CHEST,
                 BlockRegistry.WEATHERED_COPPER_CHEST,
@@ -51,16 +52,36 @@ public class BlockEntityRegistry {
                 BlockRegistry.WAXED_OXIDIZED_COPPER_CHEST
         );
 
-        IRON_CHEST = register(ChestTypes.IRON,  BlockRegistry.IRON_CHEST);
-        GOLD_CHEST = register(ChestTypes.GOLD,  BlockRegistry.GOLD_CHEST);
-        DIAMOND_CHEST = register(ChestTypes.DIAMOND,  BlockRegistry.DIAMOND_CHEST);
-        NETHERITE_CHEST = register(ChestTypes.NETHERITE,  BlockRegistry.NETHERITE_CHEST);
+        IRON_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.IRON.getId(),
+                FabricBlockEntityTypeBuilder.create((pos, state)-> new IronChestBlockEntity(pos, state, ChestTypes.IRON),
+                        BlockRegistry.IRON_CHEST).build(null));
+        GOLD_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.GOLD.getId(),
+                FabricBlockEntityTypeBuilder.create((pos, state)-> new GoldChestBlockEntity(pos, state, ChestTypes.GOLD),
+                        BlockRegistry.GOLD_CHEST).build(null));
+        DIAMOND_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.DIAMOND.getId(),
+                FabricBlockEntityTypeBuilder.create((pos, state)-> new DiamondChestBlockEntity(pos, state, ChestTypes.DIAMOND),
+                        BlockRegistry.DIAMOND_CHEST).build(null));
+        NETHERITE_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.NETHERITE.getId(),
+                FabricBlockEntityTypeBuilder.create((pos, state)-> new NetheriteChestBlockEntity(pos, state, ChestTypes.NETHERITE),
+                        BlockRegistry.NETHERITE_CHEST).build(null));
     }
 
 
-    private static BlockEntityType<BasicChestBlockEntity> register(ChestTypes type, BasicChestBlock... block){
+    private static BlockEntityType<BasicChestBlockEntity> registerBasic(ChestTypes type, BasicChestBlock... block){
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new BasicChestBlockEntity(pos, state, type),
+                        block).build(null));
+    }
+
+    private static BlockEntityType<WoolChestBlockEntity> registerWool(ChestTypes type, BasicChestBlock... block){
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
+                FabricBlockEntityTypeBuilder.create((pos, state)-> new WoolChestBlockEntity(pos, state, type),
+                        block).build(null));
+    }
+
+    private static BlockEntityType<CopperChestBlockEntity> registerCopper(ChestTypes type, BasicChestBlock... block){
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
+                FabricBlockEntityTypeBuilder.create((pos, state)-> new CopperChestBlockEntity(pos, state, type),
                         block).build(null));
     }
 }

@@ -1,10 +1,15 @@
 package games.twinhead.morechests.client;
 
 import games.twinhead.morechests.block.BasicChestBlock;
-import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
+import games.twinhead.morechests.block.PlankChestBlock;
+import games.twinhead.morechests.block.WoolChestBlock;
+import games.twinhead.morechests.block.entity.CustomChestBlockEntity;
+import games.twinhead.morechests.registry.BlockRegistry;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.DoubleBlockProperties;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.LidOpenable;
 import net.minecraft.block.enums.ChestType;
@@ -19,15 +24,22 @@ import net.minecraft.client.render.block.entity.LightmapCoordinatesRetriever;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
 
-public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
+public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
 
     private final ModelPart chestLid;
     private final ModelPart chestBase;
     private final ModelPart chestLock;
+    private final ModelPart doubleChestLeftLid;
+    private final ModelPart doubleChestLeftBase;
+    private final ModelPart doubleChestLeftLatch;
+    private final ModelPart doubleChestRightLid;
+    private final ModelPart doubleChestRightBase;
+    private final ModelPart doubleChestRightLatch;
 
     public ChestEntityRenderer(BlockEntityRendererFactory.Context ctx) {
         super(ctx);
@@ -35,6 +47,14 @@ public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> 
         this.chestBase = modelPart.getChild("bottom");
         this.chestLid = modelPart.getChild("lid");
         this.chestLock = modelPart.getChild("lock");
+        ModelPart modelPart2 = ctx.getLayerModelPart(EntityModelLayers.DOUBLE_CHEST_LEFT);
+        this.doubleChestLeftBase = modelPart2.getChild("bottom");
+        this.doubleChestLeftLid = modelPart2.getChild("lid");
+        this.doubleChestLeftLatch = modelPart2.getChild("lock");
+        ModelPart modelPart3 = ctx.getLayerModelPart(EntityModelLayers.DOUBLE_CHEST_RIGHT);
+        this.doubleChestRightBase = modelPart3.getChild("bottom");
+        this.doubleChestRightLid = modelPart3.getChild("lid");
+        this.doubleChestRightLatch = modelPart3.getChild("lock");
 
     }
 
@@ -44,6 +64,7 @@ public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> 
         BlockState blockState = bl ? entity.getCachedState() : (BlockState) Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
         ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? (ChestType)blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
         if (blockState.getBlock() instanceof BasicChestBlock block) {
+            boolean bl2 = chestType != ChestType.SINGLE;
             matrices.push();
             float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
             matrices.translate(0.5F, 0.5F, 0.5F);
@@ -56,19 +77,31 @@ public class ChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> 
                 properties = ((BasicChestBlock) block).getBlockEntitySource(blockState, world, entity.getPos(), true);
             }
 
-
-            //float g = ((Float2FloatFunction)properties.apply(  BasicChestBlock.getAnimationProgressRetriever((LidOpenable)entity))).get(tickDelta);
             float g = entity.getAnimationProgress(tickDelta);
             g = 1.0F - g;
             g = 1.0F - g * g * g;
             int i = ((Int2IntFunction)properties.apply(new LightmapCoordinatesRetriever())).applyAsInt(light);
 
-            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE, block.getType().getTextureId());
+            Identifier textureId =  (block instanceof WoolChestBlock woolBlock) ?  woolBlock.getType().getTextureId(woolBlock.getColor()) : block.getType().getTextureId();
+
+            if ((block instanceof PlankChestBlock plankBlock))
+                textureId = block.getType().getSuffixedTextureId(plankBlock.getLootTableId().getPath().split("/")[1].split("_")[0].toLowerCase() + (plankBlock.equals(BlockRegistry.DARK_OAK_PLANK_CHEST) ? "oak" : ""));
+
+            String chestTypeString = chestType != ChestType.SINGLE ? "_" + chestType.asString() : "";
+
+            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE,  textureId.withSuffixedPath(chestTypeString));
 
             VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
 
-            this.render(matrices, vertexConsumer, this.chestLid, this.chestLock, this.chestBase, g, i, overlay);
-
+            if (bl2) {
+                if (chestType == ChestType.LEFT) {
+                    this.render(matrices, vertexConsumer, this.doubleChestLeftLid, this.doubleChestLeftLatch, this.doubleChestLeftBase, g, i, overlay);
+                } else {
+                    this.render(matrices, vertexConsumer, this.doubleChestRightLid, this.doubleChestRightLatch, this.doubleChestRightBase, g, i, overlay);
+                }
+            } else {
+                this.render(matrices, vertexConsumer, this.chestLid, this.chestLock, this.chestBase, g, i, overlay);
+            }
 
             matrices.pop();
         }

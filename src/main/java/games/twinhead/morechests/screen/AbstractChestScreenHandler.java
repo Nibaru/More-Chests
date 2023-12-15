@@ -10,9 +10,11 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 
-public class AbstractChestScreenHandler extends ScreenHandler {
+public abstract class AbstractChestScreenHandler extends ScreenHandler {
     Inventory inventory;
     final ChestTypes type;
+
+    public int rows, columns;
 
     public AbstractChestScreenHandler(ScreenHandlerType<?> handlerType, ChestTypes chestType, int syncId, PlayerInventory inventory) {
         this(handlerType, chestType, syncId, inventory, new SimpleInventory(chestType.size()));
@@ -20,14 +22,13 @@ public class AbstractChestScreenHandler extends ScreenHandler {
 
     public AbstractChestScreenHandler(ScreenHandlerType<?> type, ChestTypes chestType, int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(type, syncId);
-        checkSize(inventory, 27);
+        //checkSize(inventory, 27);
         this.type = chestType;
+        this.rows = chestType.rows;
+        this.columns = chestType.columns;
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
     }
-
-
-
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int slot) {
@@ -36,11 +37,11 @@ public class AbstractChestScreenHandler extends ScreenHandler {
         if (slot2 != null && slot2.hasStack()) {
             ItemStack itemStack2 = slot2.getStack();
             itemStack = itemStack2.copy();
-            if (slot < type.rows * type.columns) {
-                if (!this.insertItem(itemStack2, type.rows * type.columns, this.slots.size(), true)) {
+            if (slot < rows * columns) {
+                if (!this.insertItem(itemStack2, rows * columns, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(itemStack2, 0, type.rows * type.columns, false)) {
+            } else if (!this.insertItem(itemStack2, 0, rows * columns, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -72,16 +73,16 @@ public class AbstractChestScreenHandler extends ScreenHandler {
 
     void addChestInventory(Inventory inventory, int xOffset, int yOffset){
         int slotCount = 0;
-        for(int j = 0; j < type.rows; ++j) {
-            for(int k = 0; k < type.columns; ++k) {
+        for(int j = 0; j < rows; ++j) {
+            for(int k = 0; k < columns; ++k) {
                 this.addSlot(new Slot(inventory, slotCount++, (8 + k * 18) + xOffset , (18 + j * 18) + yOffset));
             }
         }
     }
 
     void addPlayerInventoryAndHotbar(PlayerInventory playerInventory, int xOffset, int yOffset){
-        addPlayerHotbar(playerInventory,8 + xOffset, (type.rows * 18) + 31 + yOffset);
-        addPlayerInventory(playerInventory, 8  + xOffset, (type.rows * 18) + 31 + yOffset);
+        addPlayerHotbar(playerInventory,8 + xOffset, (rows * 18) + 31 + yOffset);
+        addPlayerInventory(playerInventory, 8  + xOffset, (rows * 18) + 31 + yOffset);
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory, int x, int y) {

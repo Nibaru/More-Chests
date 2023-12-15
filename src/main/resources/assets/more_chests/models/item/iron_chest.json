@@ -1,6 +1,0 @@
-{
-  "parent": "more_chests:block/chest_template",
-  "textures": {
-    "chest": "more_chests:chest/iron_chest"
-  }
-}

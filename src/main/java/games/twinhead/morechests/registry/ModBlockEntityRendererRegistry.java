@@ -8,15 +8,9 @@ public class ModBlockEntityRendererRegistry {
 
 
     public static void register(){
-        BlockEntityRendererFactories.register(BlockEntityRegistry.ACACIA_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.BIRCH_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.CRIMSON_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.DARK_OAK_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.JUNGLE_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.MANGROVE_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.OAK_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.SPRUCE_PLANK_CHEST, ChestEntityRenderer::new);
-        BlockEntityRendererFactories.register(BlockEntityRegistry.WARPED_PLANK_CHEST, ChestEntityRenderer::new);
+        BlockEntityRendererFactories.register(BlockEntityRegistry.PLANK_CHEST, ChestEntityRenderer::new);
+
+        BlockEntityRendererFactories.register(BlockEntityRegistry.WOOL_CHEST, ChestEntityRenderer::new);
 
         BlockEntityRendererFactories.register(BlockEntityRegistry.COPPER_CHEST, CopperChestEntityRenderer::new);
 

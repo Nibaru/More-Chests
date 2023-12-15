@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "more_chests",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "More Chests",
+  "name": "${mod_name}",
   "description": "Add more chests to the game with bigger inventory sizes, so you can store even more items.",
   "authors": ["Nibaru"],
   "contact": {
@@ -17,16 +17,13 @@
     "main": [
       "games.twinhead.morechests.MoreChests"
     ],
-    "rei_client": [
-      "games.twinhead.morechests.client.ReiPlugin"
-    ],
     "fabric-datagen": [
       "games.twinhead.morechests.datagen.ModDatagen"
     ]
   },
   "depends": {
-    "fabricloader": ">=0.14.22",
+    "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": ">1.20"
+    "minecraft": "${minecraft_version}"
   }
 }

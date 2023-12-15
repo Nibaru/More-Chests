@@ -2,7 +2,7 @@ package games.twinhead.morechests.client;
 
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.BasicChestBlock;
-import games.twinhead.morechests.block.entity.BasicChestBlockEntity;
+import games.twinhead.morechests.block.entity.CustomChestBlockEntity;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.*;
@@ -25,11 +25,17 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
 
-public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
+public class CopperChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
 
     private final ModelPart chestLid;
     private final ModelPart chestBase;
     private final ModelPart chestLock;
+    private final ModelPart doubleChestLeftLid;
+    private final ModelPart doubleChestLeftBase;
+    private final ModelPart doubleChestLeftLatch;
+    private final ModelPart doubleChestRightLid;
+    private final ModelPart doubleChestRightBase;
+    private final ModelPart doubleChestRightLatch;
 
     public CopperChestEntityRenderer(BlockEntityRendererFactory.Context ctx) {
         super(ctx);
@@ -37,6 +43,14 @@ public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpen
         this.chestBase = modelPart.getChild("bottom");
         this.chestLid = modelPart.getChild("lid");
         this.chestLock = modelPart.getChild("lock");
+        ModelPart modelPart2 = ctx.getLayerModelPart(EntityModelLayers.DOUBLE_CHEST_LEFT);
+        this.doubleChestLeftBase = modelPart2.getChild("bottom");
+        this.doubleChestLeftLid = modelPart2.getChild("lid");
+        this.doubleChestLeftLatch = modelPart2.getChild("lock");
+        ModelPart modelPart3 = ctx.getLayerModelPart(EntityModelLayers.DOUBLE_CHEST_RIGHT);
+        this.doubleChestRightBase = modelPart3.getChild("bottom");
+        this.doubleChestRightLid = modelPart3.getChild("lid");
+        this.doubleChestRightLatch = modelPart3.getChild("lock");
 
     }
 
@@ -44,7 +58,10 @@ public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpen
         World world = entity.getWorld();
         boolean bl = world != null;
         BlockState blockState = bl ? entity.getCachedState() : (BlockState) Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
+        ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? (ChestType)blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
+
         if (blockState.getBlock() instanceof Oxidizable) {
+            boolean bl2 = chestType != ChestType.SINGLE;
             matrices.push();
             BasicChestBlock block = (BasicChestBlock) blockState.getBlock();
             float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
@@ -58,7 +75,6 @@ public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpen
                 properties = ((BasicChestBlock) block).getBlockEntitySource(blockState, world, entity.getPos(), true);
             }
 
-
             float g = ((Float2FloatFunction)properties.apply(ChestBlock.getAnimationProgressRetriever((LidOpenable)entity))).get(tickDelta);
             g = 1.0F - g;
             g = 1.0F - g * g * g;
@@ -66,12 +82,23 @@ public class CopperChestEntityRenderer<T extends BasicChestBlockEntity & LidOpen
 
             Oxidizable oxidizable = (Oxidizable) blockState.getBlock();
 
-            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE,new Identifier(MoreChests.MOD_ID,"entity/chest/" + (oxidizable.getDegradationLevel() != Oxidizable.OxidationLevel.UNAFFECTED ? oxidizable.getDegradationLevel().name().toLowerCase() + "_" : "") + "copper_chest"));
+            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE,
+                    new Identifier(MoreChests.MOD_ID,"entity/chest/" +
+                            (oxidizable.getDegradationLevel() != Oxidizable.OxidationLevel.UNAFFECTED ? oxidizable.getDegradationLevel().name().toLowerCase() + "_" : "")
+                            + "copper_chest" +
+                            (chestType != ChestType.SINGLE ? "_"+ chestType.asString() : "")));
 
             VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
 
-            this.render(matrices, vertexConsumer, this.chestLid, this.chestLock, this.chestBase, g, i, overlay);
-
+            if (bl2) {
+                if (chestType == ChestType.LEFT) {
+                    this.render(matrices, vertexConsumer, this.doubleChestLeftLid, this.doubleChestLeftLatch, this.doubleChestLeftBase, g, i, overlay);
+                } else {
+                    this.render(matrices, vertexConsumer, this.doubleChestRightLid, this.doubleChestRightLatch, this.doubleChestRightBase, g, i, overlay);
+                }
+            } else {
+                this.render(matrices, vertexConsumer, this.chestLid, this.chestLock, this.chestBase, g, i, overlay);
+            }
 
             matrices.pop();
         }

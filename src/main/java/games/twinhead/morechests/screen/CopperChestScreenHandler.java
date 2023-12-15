@@ -3,12 +3,9 @@ package games.twinhead.morechests.screen;
 
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.registry.ScreenHandlerRegistry;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 public class CopperChestScreenHandler extends AbstractChestScreenHandler {
@@ -22,9 +19,6 @@ public class CopperChestScreenHandler extends AbstractChestScreenHandler {
         checkSize(inventory, type.size());
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
-
-
-
 
         int i = (type.rows - 4) * 18;
 
