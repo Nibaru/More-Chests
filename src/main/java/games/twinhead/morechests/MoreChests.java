@@ -51,6 +51,14 @@ public class MoreChests implements ModInitializer {
                     entries.add(BlockRegistry.BLACK_WOOL_CHEST.asItem());
 
                     entries.add(BlockRegistry.COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.EXPOSED_COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.WEATHERED_COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.OXIDIZED_COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.WAXED_COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.WAXED_EXPOSED_COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.WAXED_WEATHERED_COPPER_CHEST.asItem());
+                    entries.add(BlockRegistry.WAXED_OXIDIZED_COPPER_CHEST.asItem());
+
                     entries.add(BlockRegistry.IRON_CHEST.asItem());
                     entries.add(BlockRegistry.GOLD_CHEST.asItem());
                     entries.add(BlockRegistry.DIAMOND_CHEST.asItem());
@@ -60,6 +68,7 @@ public class MoreChests implements ModInitializer {
     public static Identifier id(String path) {
         return new Identifier(MOD_ID, path);
     }
+
     @Override
     public void onInitialize() {
         BlockRegistry.register();
