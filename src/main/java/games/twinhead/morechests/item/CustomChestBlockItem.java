@@ -31,13 +31,13 @@ public class CustomChestBlockItem extends BlockItem {
             tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.chest_variants", "§7§nsingle§r" + (isDouble(type) ? " §7and §ndouble" : "")));
             if (upgradesInto(type).size() > 0){
                 List<Text> texts = new ArrayList<>();
-                upgradesInto(type).forEach((upgrade) -> texts.add(Text.literal(" " + upgrade.nameFormatted()).withColor(getColor(upgrade))));
+                upgradesInto(type).forEach((upgrade) -> texts.add(Text.literal(" " + upgrade.nameFormatted())));
 
-                tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_into").append(texts.get(0)).append(upgradesInto(type).size() > 1 ? Text.literal("," + texts.get(1).getString()).withColor(getColor(upgradesInto(type).get(1))) :  Text.literal("")));
+                tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_into").append(texts.get(0)).append(upgradesInto(type).size() > 1 ? Text.literal("," + getColor(upgradesInto(type).get(1)) + texts.get(1).getString()): (Text) Text.EMPTY));
                 if (upgradeItem(type).size() > 1){
-                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients", upgradeItemCount(type) + "x" ,  Text.translatable(upgradeItem(type).get(0).getTranslationKey()).withColor(getColor(upgradesInto(type).get(0))), upgradeItemCount(type) + "x", (upgradeItem(type).size() > 0 ? Text.translatable(upgradeItem(type).get(1).getTranslationKey()).withColor(getColor(upgradesInto(type).get(1))) : "")));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients", upgradeItemCount(type) + "x" , Text.translatable(getColor(upgradesInto(type).get(0)) + upgradeItem(type).get(0).getTranslationKey()), upgradeItemCount(type) + "x", (upgradeItem(type).size() > 0 ? Text.translatable(getColor(upgradesInto(type).get(1)) + upgradeItem(type).get(1).getTranslationKey()) : "")));
                 } else {
-                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient", upgradeItemCount(type) + "x", Text.translatable(upgradeItem(type).get(0).getTranslationKey()).withColor(getColor(upgradesInto(type).get(0)))));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient", upgradeItemCount(type) + "x", Text.translatable(getColor(upgradesInto(type).get(0)) + upgradeItem(type).get(0).getTranslationKey())));
                 }
 
             }

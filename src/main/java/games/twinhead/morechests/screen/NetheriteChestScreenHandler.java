@@ -22,6 +22,5 @@ public class NetheriteChestScreenHandler extends AbstractChestScreenHandler {
 
         addChestInventory(inventory, 0, 0);
         addPlayerInventoryAndHotbar(playerInventory, 81, 0);
-
     }
 }

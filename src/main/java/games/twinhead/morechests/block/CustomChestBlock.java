@@ -176,8 +176,8 @@ public class CustomChestBlock extends ChestBlock {
                     @Nullable
                     public ScreenHandler createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
                         if (chestBlockEntity.checkUnlocked(playerEntity) && chestBlockEntity2.checkUnlocked(playerEntity)) {
-                            chestBlockEntity.generateLoot(playerInventory.player);
-                            chestBlockEntity2.generateLoot(playerInventory.player);
+                            chestBlockEntity.checkLootInteraction(playerInventory.player);
+                            chestBlockEntity2.checkLootInteraction(playerInventory.player);
                             return BasicChestScreenHandler.createGeneric9x6(i, playerInventory, inventory);
                         } else {
                             return null;

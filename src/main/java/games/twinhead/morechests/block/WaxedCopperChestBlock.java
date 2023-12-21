@@ -82,8 +82,8 @@ public class WaxedCopperChestBlock extends CustomChestBlock implements Oxidizabl
                     @Nullable
                     public ScreenHandler createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
                         if (chestBlockEntity.checkUnlocked(playerEntity) && chestBlockEntity2.checkUnlocked(playerEntity)) {
-                            chestBlockEntity.generateLoot(playerInventory.player);
-                            chestBlockEntity2.generateLoot(playerInventory.player);
+                            chestBlockEntity.checkLootInteraction(playerInventory.player);
+                            chestBlockEntity2.checkLootInteraction(playerInventory.player);
                             return new DoubleCopperChestScreenHandler(i, playerInventory, inventory);
                         } else {
                             return null;
