@@ -20,7 +20,6 @@ public class DoubleCopperChestScreenHandler extends AbstractChestScreenHandler {
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
 
-
         addChestInventory(inventory, 0, 0);
         addPlayerInventoryAndHotbar(playerInventory, 27, 36 );
     }

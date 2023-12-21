@@ -20,8 +20,8 @@ public class MoreChestsClient implements ClientModInitializer {
         HandledScreens.register(ScreenHandlerRegistry.GOLD_CHEST_SCREEN_HANDLER, GoldChestScreen::new);
         HandledScreens.register(ScreenHandlerRegistry.DIAMOND_CHEST_SCREEN_HANDLER, DiamondChestScreen::new);
         HandledScreens.register(ScreenHandlerRegistry.NETHERITE_CHEST_SCREEN_HANDLER, NetheriteChestScreen::new);
-        HandledScreens.register(ScreenHandlerRegistry.COPPER_CHEST_SCREEN_HANDLER, CopperChestScreen::new);
 
+        HandledScreens.register(ScreenHandlerRegistry.COPPER_CHEST_SCREEN_HANDLER, CopperChestScreen::new);
         HandledScreens.register(ScreenHandlerRegistry.DOUBLE_COPPER_CHEST_SCREEN_HANDLER, DoubleCopperChestScreen::new);
 
         for (DyeColor color : DyeColor.values()) {

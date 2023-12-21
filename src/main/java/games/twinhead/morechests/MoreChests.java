@@ -50,7 +50,6 @@ public class MoreChests implements ModInitializer {
                     entries.add(BlockRegistry.RED_WOOL_CHEST.asItem());
                     entries.add(BlockRegistry.BLACK_WOOL_CHEST.asItem());
 
-
                     entries.add(BlockRegistry.COPPER_CHEST.asItem());
                     entries.add(BlockRegistry.IRON_CHEST.asItem());
                     entries.add(BlockRegistry.GOLD_CHEST.asItem());
@@ -63,7 +62,6 @@ public class MoreChests implements ModInitializer {
     }
     @Override
     public void onInitialize() {
-
         BlockRegistry.register();
         BlockEntityRegistry.registerBlockEntities();
         ScreenHandlerRegistry.registerAllScreenHandlers();

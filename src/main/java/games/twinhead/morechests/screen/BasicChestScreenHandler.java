@@ -39,5 +39,7 @@ public class BasicChestScreenHandler extends AbstractChestScreenHandler {
 
         addChestInventory(inventory, 0, 0);
         addPlayerInventoryAndHotbar(playerInventory, 0, 0);
+
+
     }
 }

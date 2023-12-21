@@ -15,7 +15,7 @@ public class DiamondChestScreen extends HandledScreen<DiamondChestScreenHandler>
     public final int columns = ChestTypes.GOLD.columns;
 
     private static final Identifier TEXTURE =
-            new Identifier(MoreChests.MOD_ID, "textures/gui/container/generic_6x12.png");
+            MoreChests.id("textures/gui/container/generic_6x12.png");
 
     public DiamondChestScreen(DiamondChestScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

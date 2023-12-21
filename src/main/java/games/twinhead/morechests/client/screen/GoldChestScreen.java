@@ -14,7 +14,7 @@ public class GoldChestScreen extends HandledScreen<GoldChestScreenHandler> {
     public final int columns = 12;
 
     private static final Identifier TEXTURE =
-            new Identifier(MoreChests.MOD_ID, "textures/gui/container/generic_6x12.png");
+            MoreChests.id("textures/gui/container/generic_6x12.png");
 
     public GoldChestScreen(GoldChestScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

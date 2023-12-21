@@ -39,14 +39,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-public class BasicChestBlock extends ChestBlock {
+public class CustomChestBlock extends ChestBlock {
 
     public final ChestTypes type;
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     private static final DoubleBlockProperties.PropertyRetriever<CustomChestBlockEntity, Optional<NamedScreenHandlerFactory>> NAME_RETRIEVER;
 
-    public BasicChestBlock(Settings settings, ChestTypes type) {
+    public CustomChestBlock(Settings settings, ChestTypes type) {
         super(settings, type::getBlockEntityType);
         this.type = type;
     }
@@ -61,7 +61,7 @@ public class BasicChestBlock extends ChestBlock {
 
     @Override
     public DoubleBlockProperties.PropertySource<? extends BasicChestBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
-        BiPredicate<WorldAccess, BlockPos> biPredicate = ignoreBlocked ? (worldx, posx) -> false : BasicChestBlock::isChestBlocked;
+        BiPredicate<WorldAccess, BlockPos> biPredicate = ignoreBlocked ? (worldx, posx) -> false : CustomChestBlock::isChestBlocked;
         return DoubleBlockProperties.toPropertySource((BlockEntityType)this.entityTypeRetriever.get(), ChestBlock::getDoubleBlockType, ChestBlock::getFacing, FACING, state, world, pos, biPredicate);
     }
 
@@ -99,7 +99,7 @@ public class BasicChestBlock extends ChestBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? BasicChestBlock.validateTicker(type, this.getExpectedEntityType(), (world1, pos, state1, blockEntity) -> (blockEntity).clientTick()) : null;
+        return world.isClient ? CustomChestBlock.validateTicker(type, this.getExpectedEntityType(), (world1, pos, state1, blockEntity) -> (blockEntity).clientTick()) : null;
     }
 
     public BlockEntityType<? extends CustomChestBlockEntity> getExpectedEntityType() {
@@ -135,11 +135,12 @@ public class BasicChestBlock extends ChestBlock {
         BlockState clickedState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(side.getOpposite()));
         if (clickedState.isOf(this) && bl && clickedState.get(CHEST_TYPE) == ChestType.SINGLE) {
             if(ctx.getPlayer().isSneaking()){
-                direction = clickedState.get(FACING);
                 if (side == clickedState.get(FACING).rotateYClockwise()){
                     chestType = ChestType.RIGHT;
+                    direction = clickedState.get(FACING);
                 } else if (side == clickedState.get(FACING).rotateYCounterclockwise()){
                     chestType = ChestType.LEFT;
+                    direction = clickedState.get(FACING);
                 }
             }
         }

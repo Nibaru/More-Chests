@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-public class CopperChestBlock extends BasicChestBlock implements Oxidizable {
+public class CopperChestBlock extends CustomChestBlock implements Oxidizable {
 
     private final Oxidizable.OxidationLevel oxidationLevel;
 

@@ -81,4 +81,8 @@ public enum ChestTypes {
         return MoreChests.id("entity/chest/" + color + "_" + this.name().toLowerCase() + "_chest");
     }
 
+    public String nameFormatted(){
+        return this.name().substring(0, 1).toUpperCase() + this.name().substring(1).toLowerCase();
+    }
+
 }

@@ -1,6 +1,6 @@
 package games.twinhead.morechests.client;
 
-import games.twinhead.morechests.block.BasicChestBlock;
+import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.PlankChestBlock;
 import games.twinhead.morechests.block.WoolChestBlock;
 import games.twinhead.morechests.block.entity.CustomChestBlockEntity;
@@ -63,7 +63,7 @@ public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable>
         boolean bl = world != null;
         BlockState blockState = bl ? entity.getCachedState() : (BlockState) Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
         ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? (ChestType)blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
-        if (blockState.getBlock() instanceof BasicChestBlock block) {
+        if (blockState.getBlock() instanceof CustomChestBlock block) {
             boolean bl2 = chestType != ChestType.SINGLE;
             matrices.push();
             float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
@@ -74,7 +74,7 @@ public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable>
             if (world == null) {
                 properties = DoubleBlockProperties.PropertyRetriever::getFallback;
             } else {
-                properties = ((BasicChestBlock) block).getBlockEntitySource(blockState, world, entity.getPos(), true);
+                properties = ((CustomChestBlock) block).getBlockEntitySource(blockState, world, entity.getPos(), true);
             }
 
             float g = entity.getAnimationProgress(tickDelta);
@@ -85,7 +85,8 @@ public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable>
             Identifier textureId =  (block instanceof WoolChestBlock woolBlock) ?  woolBlock.getType().getTextureId(woolBlock.getColor()) : block.getType().getTextureId();
 
             if ((block instanceof PlankChestBlock plankBlock))
-                textureId = block.getType().getSuffixedTextureId(plankBlock.getLootTableId().getPath().split("/")[1].split("_")[0].toLowerCase() + (plankBlock.equals(BlockRegistry.DARK_OAK_PLANK_CHEST) ? "oak" : ""));
+                textureId = block.getType().getSuffixedTextureId(plankBlock.getLootTableId().getPath().split("/")[1].split("_")[0].toLowerCase() + (plankBlock.equals(BlockRegistry.DARK_OAK_PLANK_CHEST) ? "_oak" : ""));
+
 
             String chestTypeString = chestType != ChestType.SINGLE ? "_" + chestType.asString() : "";
 

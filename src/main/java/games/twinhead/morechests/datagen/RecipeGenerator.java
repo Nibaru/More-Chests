@@ -62,8 +62,6 @@ public class RecipeGenerator extends FabricRecipeProvider {
         generateWoolChestRecipes(Blocks.RED_WOOL, BlockRegistry.RED_WOOL_CHEST, exporter);
         generateWoolChestRecipes(Blocks.BLACK_WOOL, BlockRegistry.BLACK_WOOL_CHEST, exporter);
 
-        //TODO generate otehr recipes
-
         offerCustomDyeableRecipes(exporter,
                 List.of(new Identifier("c", "black_dyes"),
                         new Identifier("c", "blue_dyes"),
@@ -104,18 +102,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, BlockRegistry.IRON_CHEST, 1).group("iron_chests").criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).criterion(hasItem(BlockRegistry.IRON_CHEST), conditionsFromItem(BlockRegistry.IRON_CHEST)).criterion("has_wooden_chest", conditionsFromTag(ModTags.WOODEN_CHESTS)).input('#', Items.IRON_INGOT).input('C', ModTags.WOODEN_CHESTS).pattern("###").pattern("#C#").pattern("###").offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, BlockRegistry.GOLD_CHEST, 1).group("gold_chests").criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT)).criterion(hasItem(BlockRegistry.GOLD_CHEST), conditionsFromItem(BlockRegistry.GOLD_CHEST)).criterion("has_upgrade_chest", conditionsFromTag(ModTags.GOLD_UPGRADE_CHESTS)).input('#', Items.GOLD_INGOT).input('C', ModTags.GOLD_UPGRADE_CHESTS).pattern("###").pattern("#C#").pattern("###").offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, BlockRegistry.DIAMOND_CHEST, 1).group("diamond_chests").criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND)).criterion(hasItem(BlockRegistry.DIAMOND_CHEST), conditionsFromItem(BlockRegistry.DIAMOND_CHEST)).criterion(hasItem(BlockRegistry.GOLD_CHEST), conditionsFromItem(BlockRegistry.GOLD_CHEST)).input('#', Items.DIAMOND).input('C', BlockRegistry.GOLD_CHEST).pattern("###").pattern("#C#").pattern("###").offerTo(exporter);
-
-
-
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.CHEST, 1).group("wooden_chests").criterion(hasItem(Items.CHEST), conditionsFromItem(Items.CHEST)).input('#', ItemTags.PLANKS).pattern("###").pattern("# #").pattern("###").offerTo(exporter);
-
-
     }
 
     public void generateWoodenChestRecipes(ItemConvertible plank, TagKey<Item> log, ItemConvertible chest, String name, RecipeExporter exporter){
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 1).group("wooden_chests").criterion(hasItem(plank), conditionsFromItem(plank)).criterion(hasItem(chest), conditionsFromItem(chest)).input('#', plank).pattern("###").pattern("# #").pattern("###").offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 4).group("wooden_chests").criterion("has_log", conditionsFromTag(log)).criterion(hasItem(chest), conditionsFromItem(chest)).input('#', log).pattern("###").pattern("# #").pattern("###").offerTo(exporter, new Identifier(MoreChests.MOD_ID, name + "_plank_chest_log"));
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 1).input(ModTags.WOODEN_CHESTS).input(plank).group("wooden_chests").criterion(hasItem(chest), conditionsFromItem(chest)).offerTo(exporter, new Identifier(MoreChests.MOD_ID, name + "_plank_chest_planks"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 4).group("wooden_chests").criterion("has_log", conditionsFromTag(log)).criterion(hasItem(chest), conditionsFromItem(chest)).input('#', log).pattern("###").pattern("# #").pattern("###").offerTo(exporter, MoreChests.id(name + "_plank_chest_log"));
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 1).input(ModTags.WOODEN_CHESTS).input(plank).group("wooden_chests").criterion(hasItem(chest), conditionsFromItem(chest)).offerTo(exporter, MoreChests.id(name + "_plank_chest_planks"));
     }
 
     public void generateWoolChestRecipes(ItemConvertible wool,  ItemConvertible craftedChest, RecipeExporter exporter){

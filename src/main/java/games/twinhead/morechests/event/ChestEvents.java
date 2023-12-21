@@ -1,7 +1,7 @@
 package games.twinhead.morechests.event;
 
 import com.google.common.collect.BiMap;
-import games.twinhead.morechests.block.BasicChestBlock;
+import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.CopperChestBlock;
 import games.twinhead.morechests.block.WaxedCopperChestBlock;
 import games.twinhead.morechests.registry.BlockRegistry;
@@ -167,7 +167,7 @@ public class ChestEvents {
         return ActionResult.PASS;
     }
 
-    public void upgradeDoubleChest(BasicChestBlock newChest, PlayerEntity player, BlockState state, World world, BlockPos pos, ChestType type, int itemsToRemove){
+    public void upgradeDoubleChest(CustomChestBlock newChest, PlayerEntity player, BlockState state, World world, BlockPos pos, ChestType type, int itemsToRemove){
         ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(pos);
         ChestBlockEntity chest2 = (ChestBlockEntity) world.getBlockEntity(getNeighborChestPos(pos, state, type));
         Text customName = chest.getCustomName();
@@ -204,7 +204,7 @@ public class ChestEvents {
     }
 
 
-    public static void upgradeChest(BasicChestBlock newChest, ChestBlockEntity chest, World world, BlockPos pos, PlayerEntity player, int itemsToRemove){
+    public static void upgradeChest(CustomChestBlock newChest, ChestBlockEntity chest, World world, BlockPos pos, PlayerEntity player, int itemsToRemove){
         Text customName = chest.getCustomName();
         Direction chestFacing = world.getBlockState(pos).get(ChestBlock.FACING);
 

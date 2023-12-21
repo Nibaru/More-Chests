@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-public class WoolChestBlock extends BasicChestBlock {
+public class WoolChestBlock extends CustomChestBlock {
 
     public DyeColor color;
 
@@ -55,7 +55,7 @@ public class WoolChestBlock extends BasicChestBlock {
         if (ignoreBlocked) {
             biPredicate = (worldX, posX) -> false;
         } else {
-            biPredicate = (worldX, posX) -> BasicChestBlock.isChestBlocked(world, pos);
+            biPredicate = (worldX, posX) -> CustomChestBlock.isChestBlocked(world, pos);
         }
         return DoubleBlockProperties.toPropertySource((BlockEntityType)this.entityTypeRetriever.get(), ChestBlock::getDoubleBlockType, ChestBlock::getFacing, FACING, state, world, pos, biPredicate);
     }

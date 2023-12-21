@@ -1,7 +1,7 @@
 package games.twinhead.morechests.datagen;
 
 import games.twinhead.morechests.MoreChests;
-import games.twinhead.morechests.block.BasicChestBlock;
+import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.WoolChestBlock;
 import games.twinhead.morechests.registry.BlockRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -32,8 +32,7 @@ public class ModelGenerator extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         BlockRegistry.CHEST_BLOCKS.forEach((id, chestBlock) -> new Model(
                 Optional.of(
-                        new Identifier(MoreChests.MOD_ID,
-                                "block/chest_template")),
+                        MoreChests.id("block/chest_template")),
                 Optional.empty(),
                 TextureKey.LAYER0
         ).upload(
@@ -44,7 +43,7 @@ public class ModelGenerator extends FabricModelProvider {
                 itemModelGenerator.writer));
     }
 
-    private Block getParticleBlock(Identifier id, BasicChestBlock chestBlock){
+    private Block getParticleBlock(Identifier id, CustomChestBlock chestBlock){
         return switch (chestBlock.getType()) {
             case PLANK -> switch (id.getPath().substring(0, id.getPath().indexOf('_'))){
                 case "acacia" -> Blocks.ACACIA_PLANKS;

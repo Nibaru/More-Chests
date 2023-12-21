@@ -4,7 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.item.ItemPlacementContext;
 
-public class SingleChestBlock extends BasicChestBlock {
+public class SingleChestBlock extends CustomChestBlock {
 
     public SingleChestBlock(Settings settings, ChestTypes type) {
         super(settings, type);

@@ -1,7 +1,7 @@
 package games.twinhead.morechests.client;
 
 import games.twinhead.morechests.MoreChests;
-import games.twinhead.morechests.block.BasicChestBlock;
+import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.entity.CustomChestBlockEntity;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
@@ -20,7 +20,6 @@ import net.minecraft.client.render.block.entity.LightmapCoordinatesRetriever;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
@@ -63,7 +62,7 @@ public class CopperChestEntityRenderer<T extends CustomChestBlockEntity & LidOpe
         if (blockState.getBlock() instanceof Oxidizable) {
             boolean bl2 = chestType != ChestType.SINGLE;
             matrices.push();
-            BasicChestBlock block = (BasicChestBlock) blockState.getBlock();
+            CustomChestBlock block = (CustomChestBlock) blockState.getBlock();
             float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
             matrices.translate(0.5F, 0.5F, 0.5F);
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
@@ -72,7 +71,7 @@ public class CopperChestEntityRenderer<T extends CustomChestBlockEntity & LidOpe
             if (world == null) {
                 properties = DoubleBlockProperties.PropertyRetriever::getFallback;
             } else {
-                properties = ((BasicChestBlock) block).getBlockEntitySource(blockState, world, entity.getPos(), true);
+                properties = ((CustomChestBlock) block).getBlockEntitySource(blockState, world, entity.getPos(), true);
             }
 
             float g = ((Float2FloatFunction)properties.apply(ChestBlock.getAnimationProgressRetriever((LidOpenable)entity))).get(tickDelta);
@@ -83,7 +82,7 @@ public class CopperChestEntityRenderer<T extends CustomChestBlockEntity & LidOpe
             Oxidizable oxidizable = (Oxidizable) blockState.getBlock();
 
             SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE,
-                    new Identifier(MoreChests.MOD_ID,"entity/chest/" +
+                    MoreChests.id("entity/chest/" +
                             (oxidizable.getDegradationLevel() != Oxidizable.OxidationLevel.UNAFFECTED ? oxidizable.getDegradationLevel().name().toLowerCase() + "_" : "")
                             + "copper_chest" +
                             (chestType != ChestType.SINGLE ? "_"+ chestType.asString() : "")));

@@ -1,6 +1,6 @@
 package games.twinhead.morechests.registry;
 
-import games.twinhead.morechests.block.BasicChestBlock;
+import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.block.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -11,9 +11,7 @@ import net.minecraft.registry.Registry;
 public class BlockEntityRegistry {
 
     public static BlockEntityType<BasicChestBlockEntity> PLANK_CHEST;
-
     public static BlockEntityType<WoolChestBlockEntity> WOOL_CHEST;
-
     public static BlockEntityType<CopperChestBlockEntity> COPPER_CHEST;
     public static BlockEntityType<IronChestBlockEntity> IRON_CHEST;
     public static BlockEntityType<GoldChestBlockEntity> GOLD_CHEST;
@@ -67,19 +65,19 @@ public class BlockEntityRegistry {
     }
 
 
-    private static BlockEntityType<BasicChestBlockEntity> registerBasic(ChestTypes type, BasicChestBlock... block){
+    private static BlockEntityType<BasicChestBlockEntity> registerBasic(ChestTypes type, CustomChestBlock... block){
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new BasicChestBlockEntity(pos, state, type),
                         block).build(null));
     }
 
-    private static BlockEntityType<WoolChestBlockEntity> registerWool(ChestTypes type, BasicChestBlock... block){
+    private static BlockEntityType<WoolChestBlockEntity> registerWool(ChestTypes type, CustomChestBlock... block){
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new WoolChestBlockEntity(pos, state, type),
                         block).build(null));
     }
 
-    private static BlockEntityType<CopperChestBlockEntity> registerCopper(ChestTypes type, BasicChestBlock... block){
+    private static BlockEntityType<CopperChestBlockEntity> registerCopper(ChestTypes type, CustomChestBlock... block){
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new CopperChestBlockEntity(pos, state, type),
                         block).build(null));

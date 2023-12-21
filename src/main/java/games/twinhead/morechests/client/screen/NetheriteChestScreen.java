@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHandler> {
 
     private static final Identifier TEXTURE =
-            new Identifier(MoreChests.MOD_ID, "textures/gui/container/generic_6x12_separated.png");
+            MoreChests.id("textures/gui/container/generic_6x12_separated.png");
 
     public NetheriteChestScreen(NetheriteChestScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

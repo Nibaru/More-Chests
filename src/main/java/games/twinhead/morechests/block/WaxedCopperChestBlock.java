@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-public class WaxedCopperChestBlock extends BasicChestBlock implements Oxidizable{
+public class WaxedCopperChestBlock extends CustomChestBlock implements Oxidizable{
 
     private final Oxidizable.OxidationLevel oxidationLevel;
 

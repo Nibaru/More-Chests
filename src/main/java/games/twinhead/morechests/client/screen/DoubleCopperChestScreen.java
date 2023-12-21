@@ -13,7 +13,7 @@ public class DoubleCopperChestScreen extends HandledScreen<DoubleCopperChestScre
     public final int rows = 6;
 
     private static final Identifier TEXTURE =
-            new Identifier(MoreChests.MOD_ID, "textures/gui/container/generic_6x12.png");
+            MoreChests.id("textures/gui/container/generic_6x12.png");
 
     public DoubleCopperChestScreen(DoubleCopperChestScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
