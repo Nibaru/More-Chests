@@ -28,8 +28,6 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 BlockRegistry.OAK_PLANK_CHEST,
                 BlockRegistry.SPRUCE_PLANK_CHEST,
                 BlockRegistry.WARPED_PLANK_CHEST,
-                BlockRegistry.BAMBOO_PLANK_CHEST,
-                BlockRegistry.CHERRY_PLANK_CHEST,
                 Blocks.CHEST
         );
         getOrCreateTagBuilder(ModTags.WOOL_CHESTS_BLOCK).add(

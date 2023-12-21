@@ -5,9 +5,8 @@ import games.twinhead.morechests.registry.BlockRegistry;
 import games.twinhead.morechests.tag.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
@@ -23,6 +22,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RecipeGenerator extends FabricRecipeProvider {
 
@@ -32,7 +32,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
+    public void generate(Consumer<RecipeJsonProvider> exporter) {
         generateWoodenChestRecipes(Blocks.ACACIA_PLANKS, ItemTags.ACACIA_LOGS, BlockRegistry.ACACIA_PLANK_CHEST, "acacia", exporter);
         generateWoodenChestRecipes(Blocks.BIRCH_PLANKS, ItemTags.BIRCH_LOGS, BlockRegistry.BIRCH_PLANK_CHEST, "birch", exporter);
         generateWoodenChestRecipes(Blocks.CRIMSON_PLANKS, ItemTags.CRIMSON_STEMS, BlockRegistry.CRIMSON_PLANK_CHEST, "crimson", exporter);
@@ -42,8 +42,6 @@ public class RecipeGenerator extends FabricRecipeProvider {
         generateWoodenChestRecipes(Blocks.OAK_PLANKS, ItemTags.OAK_LOGS, BlockRegistry.OAK_PLANK_CHEST, "oak", exporter);
         generateWoodenChestRecipes(Blocks.SPRUCE_PLANKS, ItemTags.SPRUCE_LOGS, BlockRegistry.SPRUCE_PLANK_CHEST, "spruce", exporter);
         generateWoodenChestRecipes(Blocks.WARPED_PLANKS, ItemTags.WARPED_STEMS, BlockRegistry.WARPED_PLANK_CHEST, "warped", exporter);
-        generateWoodenChestRecipes(Blocks.BAMBOO_PLANKS, ItemTags.BAMBOO_BLOCKS, BlockRegistry.BAMBOO_PLANK_CHEST, "bamboo", exporter);
-        generateWoodenChestRecipes(Blocks.CHERRY_PLANKS, ItemTags.CHERRY_LOGS, BlockRegistry.CHERRY_PLANK_CHEST, "cherry", exporter);
 
         generateWoolChestRecipes(Blocks.WHITE_WOOL, BlockRegistry.WHITE_WOOL_CHEST, exporter);
         generateWoolChestRecipes(Blocks.ORANGE_WOOL, BlockRegistry.ORANGE_WOOL_CHEST, exporter);
@@ -105,21 +103,21 @@ public class RecipeGenerator extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.CHEST, 1).group("wooden_chests").criterion(hasItem(Items.CHEST), conditionsFromItem(Items.CHEST)).input('#', ItemTags.PLANKS).pattern("###").pattern("# #").pattern("###").offerTo(exporter);
     }
 
-    public void generateWoodenChestRecipes(ItemConvertible plank, TagKey<Item> log, ItemConvertible chest, String name, RecipeExporter exporter){
+    public void generateWoodenChestRecipes(ItemConvertible plank, TagKey<Item> log, ItemConvertible chest, String name, Consumer<RecipeJsonProvider> exporter){
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 1).group("wooden_chests").criterion(hasItem(plank), conditionsFromItem(plank)).criterion(hasItem(chest), conditionsFromItem(chest)).input('#', plank).pattern("###").pattern("# #").pattern("###").offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 4).group("wooden_chests").criterion("has_log", conditionsFromTag(log)).criterion(hasItem(chest), conditionsFromItem(chest)).input('#', log).pattern("###").pattern("# #").pattern("###").offerTo(exporter, MoreChests.id(name + "_plank_chest_log"));
         ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, chest, 1).input(ModTags.WOODEN_CHESTS).input(plank).group("wooden_chests").criterion(hasItem(chest), conditionsFromItem(chest)).offerTo(exporter, MoreChests.id(name + "_plank_chest_planks"));
     }
 
-    public void generateWoolChestRecipes(ItemConvertible wool,  ItemConvertible craftedChest, RecipeExporter exporter){
+    public void generateWoolChestRecipes(ItemConvertible wool,  ItemConvertible craftedChest, Consumer<RecipeJsonProvider> exporter){
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, craftedChest, 1).group("wool_chests").criterion(hasItem(wool), conditionsFromItem(wool)).criterion(hasItem(craftedChest), conditionsFromItem(craftedChest)).input('#', wool).pattern("###").pattern("# #").pattern("###").offerTo(exporter);
     }
 
-    public void offerCustomDyeableRecipes(RecipeExporter exporter, List<Identifier> dyeTags, List<Item> dyeables, String group) {
+    public void offerCustomDyeableRecipes(Consumer<RecipeJsonProvider> exporter, List<Identifier> dyeTags, List<Item> dyeables, String group) {
         for (int i = 0; i < dyeTags.size(); ++i) {
             Identifier item = dyeTags.get(i);
             Item item2 = dyeables.get(i);
-            ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, item2).input(TagKey.of(RegistryKeys.ITEM,item)).input(Ingredient.ofStacks(dyeables.stream().filter(dyeable -> !dyeable.equals(item2)).map(ItemStack::new))).group(group).criterion("has_needed_dye", (AdvancementCriterion)RecipeProvider.conditionsFromTag(TagKey.of(RegistryKeys.ITEM,item))).offerTo(exporter, "dye_" + RecipeProvider.getItemPath(item2));
+            ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, item2).input(TagKey.of(RegistryKeys.ITEM,item)).input(Ingredient.ofStacks(dyeables.stream().filter(dyeable -> !dyeable.equals(item2)).map(ItemStack::new))).group(group).criterion("has_needed_dye", RecipeProvider.conditionsFromTag(TagKey.of(RegistryKeys.ITEM,item))).offerTo(exporter, "dye_" + RecipeProvider.getItemPath(item2));
         }
     }
 }

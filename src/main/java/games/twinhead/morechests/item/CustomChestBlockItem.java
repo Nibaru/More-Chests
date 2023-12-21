@@ -30,14 +30,14 @@ public class CustomChestBlockItem extends BlockItem {
         } else {
             tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.chest_variants", "§7§nsingle§r" + (isDouble(type) ? " §7and §ndouble" : "")));
             if (upgradesInto(type).size() > 0){
-                List<Text> texts = new ArrayList<>();
-                upgradesInto(type).forEach((upgrade) -> texts.add(Text.literal(" " + upgrade.nameFormatted())));
+                List<String> texts = new ArrayList<>();
+                upgradesInto(type).forEach((upgrade) -> texts.add(" " + upgrade.nameFormatted()));
 
-                tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_into").append(texts.get(0)).append(upgradesInto(type).size() > 1 ? Text.literal("," + getColor(upgradesInto(type).get(1)) + texts.get(1).getString()): (Text) Text.EMPTY));
+                tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_into", texts.get(0) + (upgradesInto(type).size() > 1 ? "," + texts.get(1): "")));
                 if (upgradeItem(type).size() > 1){
-                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients", upgradeItemCount(type) + "x" , Text.translatable(getColor(upgradesInto(type).get(0)) + upgradeItem(type).get(0).getTranslationKey()), upgradeItemCount(type) + "x", (upgradeItem(type).size() > 0 ? Text.translatable(getColor(upgradesInto(type).get(1)) + upgradeItem(type).get(1).getTranslationKey()) : "")));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients", upgradeItemCount(type) + "x" , Text.translatable(upgradeItem(type).get(0).getTranslationKey()), upgradeItemCount(type) + "x", (upgradeItem(type).size() > 0 ? Text.translatable(upgradeItem(type).get(1).getTranslationKey()) : "")));
                 } else {
-                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient", upgradeItemCount(type) + "x", Text.translatable(getColor(upgradesInto(type).get(0)) + upgradeItem(type).get(0).getTranslationKey())));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient", upgradeItemCount(type) + "x", Text.translatable(upgradeItem(type).get(0).getTranslationKey())));
                 }
 
             }

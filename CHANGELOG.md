@@ -12,8 +12,6 @@
   - All 16 colors
   - Can be dyed
   - Can be crafted with any wool color
-- Bamboo Chest
-- Cherry Chest
 - Tooltips for all chests showing their upgrade ingredients and what they upgrade into
 
 ### Changed

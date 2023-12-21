@@ -99,7 +99,7 @@ public class CustomChestBlock extends ChestBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? CustomChestBlock.validateTicker(type, this.getExpectedEntityType(), (world1, pos, state1, blockEntity) -> (blockEntity).clientTick()) : null;
+        return world.isClient ? CustomChestBlock.checkType(type, this.getExpectedEntityType(), (world1, pos, state1, blockEntity) -> (blockEntity).clientTick()) : null;
     }
 
     public BlockEntityType<? extends CustomChestBlockEntity> getExpectedEntityType() {

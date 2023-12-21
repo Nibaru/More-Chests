@@ -8,8 +8,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -17,7 +15,7 @@ public class MoreChests implements ModInitializer {
 
     public static final String MOD_ID = "more_chests";
 
-    public static ItemGroup MOD_GROUP  = FabricItemGroup.builder()
+    public static ItemGroup MOD_GROUP  = FabricItemGroup.builder(new Identifier(MoreChests.MOD_ID, "more_chests_mod_group"))
             .icon(() -> new ItemStack(BlockRegistry.DIAMOND_CHEST))
             .displayName(Text.translatable("item_group.more_chests.more_chests_mod_group"))
             .entries((collector, entries) -> {
@@ -30,8 +28,6 @@ public class MoreChests implements ModInitializer {
                     entries.add(BlockRegistry.OAK_PLANK_CHEST.asItem());
                     entries.add(BlockRegistry.SPRUCE_PLANK_CHEST.asItem());
                     entries.add(BlockRegistry.WARPED_PLANK_CHEST.asItem());
-                    entries.add(BlockRegistry.BAMBOO_PLANK_CHEST.asItem());
-                    entries.add(BlockRegistry.CHERRY_PLANK_CHEST.asItem());
 
                     entries.add(BlockRegistry.WHITE_WOOL_CHEST.asItem());
                     entries.add(BlockRegistry.ORANGE_WOOL_CHEST.asItem());
@@ -67,7 +63,7 @@ public class MoreChests implements ModInitializer {
         ScreenHandlerRegistry.registerAllScreenHandlers();
         new ChestEvents().register();
 
-        Registry.register(Registries.ITEM_GROUP, id("group"), MOD_GROUP);
+        //Registry.register(Registries.ITEM, id("group"), MOD_GROUP);
     }
 
 

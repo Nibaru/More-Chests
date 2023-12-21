@@ -1,10 +1,12 @@
 package games.twinhead.morechests.client.screen;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.screen.NetheriteChestScreenHandler;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -23,37 +25,37 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
     }
 
     @Override
-    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+    protected void drawBackground(MatrixStack context, float delta, int mouseX, int mouseY) {
         int i = ((width - backgroundWidth) / 2) + 27;
         int j = (height - backgroundHeight) / 2;
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, TEXTURE);
 
-        context.drawTexture(TEXTURE, i + 27, j, 0, 0, this.backgroundWidth - 60, 3 * 18 + 17);
+        drawTexture(context, i + 27, j, 0, 0, this.backgroundWidth - 60, 3 * 18 + 17);
 
         //top left
-        context.drawTexture(TEXTURE, i - 27, j, 0, 0, 18 * 3 + 7, 3 * 18 + 17);
+        drawTexture(context, i - 27, j, 0, 0, 18 * 3 + 7, 3 * 18 + 17);
 
         //top right
-        context.drawTexture(TEXTURE, i + 18 * 14 -2, j, 169, 0, 18 * 3 + 7, 3 * 18 + 17);
+        drawTexture(context, i + 18 * 14 -2, j, 169, 0, 18 * 3 + 7, 3 * 18 + 17);
 
         //middle
-        context.drawTexture(TEXTURE, i + 27, j + 3 * 18 + 17,  0, 17, 18*12 +7, 115);
+        drawTexture(context, i + 27, j + 3 * 18 + 17,  0, 17, 18*12 +7, 115);
 
         //bottom Left
-        context.drawTexture(TEXTURE, i - 27, j + 3 * 18 + 17,  0, 17, 18 * 3 + 7, 115);
+        drawTexture(context, i - 27, j + 3 * 18 + 17,  0, 17, 18 * 3 + 7, 115);
 
         //bottom right
-        context.drawTexture(TEXTURE, i + 18 * 14 - 2, j + 3 * 18 + 17,  169, 17, 18 * 3 + 7, 115);
+        drawTexture(context, i + 18 * 14 - 2, j + 3 * 18 + 17,  169, 17, 18 * 3 + 7, 115);
 
         //inventory
-        context.drawTexture(TEXTURE, i + 54, j + 9 * 18 + 21,  0, 133, 18 * 12, 96);
-        //context.drawTexture(TEXTURE, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
-
-        context.drawHorizontalLine(0, 284, 30, 255);
-
+        drawTexture(context, i + 54, j + 9 * 18 + 21,  0, 133, 18 * 12, 96);
     }
 
     @Override
-    public void render(DrawContext texture, int mouseX, int mouseY, float delta) {
+    public void render(MatrixStack texture, int mouseX, int mouseY, float delta) {
+        renderBackground(texture);
         super.render(texture, mouseX, mouseY, delta);
         drawMouseoverTooltip(texture, mouseX, mouseY);
     }

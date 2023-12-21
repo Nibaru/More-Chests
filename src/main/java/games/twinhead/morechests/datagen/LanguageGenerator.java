@@ -20,8 +20,6 @@ public class LanguageGenerator extends FabricLanguageProvider {
         tb.add(BlockRegistry.MANGROVE_PLANK_CHEST, "Mangrove Chest");
         tb.add(BlockRegistry.OAK_PLANK_CHEST, "Oak Chest");
         tb.add(BlockRegistry.SPRUCE_PLANK_CHEST, "Spruce Chest");
-        tb.add(BlockRegistry.BAMBOO_PLANK_CHEST, "Bamboo Chest");
-        tb.add(BlockRegistry.CHERRY_PLANK_CHEST, "Cherry Chest");
         tb.add(BlockRegistry.WARPED_PLANK_CHEST, "Warped Chest");
         tb.add(BlockRegistry.COPPER_CHEST, "Copper Chest");
         tb.add(BlockRegistry.EXPOSED_COPPER_CHEST, "Exposed Copper Chest");
@@ -57,7 +55,7 @@ public class LanguageGenerator extends FabricLanguageProvider {
         tb.add("item_group.more_chests.more_chests_mod_group", "More Chests");
 
         tb.add("item.more_chests.chest_item.tooltip.shift", "§7Hold§7 §eShift§7");
-        tb.add("item.more_chests.chest_item.tooltip.upgrades_into", "§7Upgrades into:§r");
+        tb.add("item.more_chests.chest_item.tooltip.upgrades_into", "§7Upgrades into:§r %s");
         tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredient", "§7Sneak and interact while holding %s %s §7to upgrade.");
         tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredients", "§7Sneak and interact while holding %s §a%s §7or %s §a%s §7to upgrade.");
         tb.add("item.more_chests.chest_item.tooltip.chest_variants", "§7Available in §n%s §7chest variants");

@@ -27,8 +27,6 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 BlockRegistry.OAK_PLANK_CHEST.asItem(),
                 BlockRegistry.SPRUCE_PLANK_CHEST.asItem(),
                 BlockRegistry.WARPED_PLANK_CHEST.asItem(),
-                BlockRegistry.BAMBOO_PLANK_CHEST.asItem(),
-                BlockRegistry.CHERRY_PLANK_CHEST.asItem(),
                 Items.CHEST
         );
         getOrCreateTagBuilder(ModTags.WOOL_CHESTS).add(

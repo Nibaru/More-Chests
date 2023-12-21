@@ -55,8 +55,6 @@ public class ModelGenerator extends FabricModelProvider {
                 case "oak" -> Blocks.OAK_PLANKS;
                 case "spruce" -> Blocks.SPRUCE_PLANKS;
                 case "warped" -> Blocks.WARPED_PLANKS;
-                case "bamboo" -> Blocks.BAMBOO_PLANKS;
-                case "cherry" -> Blocks.CHERRY_PLANKS;
                 default -> Blocks.OAK_PLANKS;
             };
             case WOOL -> {

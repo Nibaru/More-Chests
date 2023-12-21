@@ -29,8 +29,6 @@ public class BlockRegistry {
     public static final CustomChestBlock OAK_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock SPRUCE_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock WARPED_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS), ChestTypes.PLANK);
-    public static final CustomChestBlock BAMBOO_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS), ChestTypes.PLANK);
-    public static final CustomChestBlock CHERRY_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.CHERRY_PLANKS), ChestTypes.PLANK);
 
     public static final CustomChestBlock WHITE_WOOL_CHEST = new WoolChestBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL), ChestTypes.WOOL, DyeColor.WHITE);
     public static final CustomChestBlock ORANGE_WOOL_CHEST = new WoolChestBlock(FabricBlockSettings.copyOf(Blocks.ORANGE_WOOL), ChestTypes.WOOL, DyeColor.ORANGE);
@@ -75,8 +73,6 @@ public class BlockRegistry {
         registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("oak_"), OAK_PLANK_CHEST);
         registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("spruce_"), SPRUCE_PLANK_CHEST);
         registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("warped_"), WARPED_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("bamboo_"), BAMBOO_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("cherry_"), CHERRY_PLANK_CHEST);
 
         registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("white_"), WHITE_WOOL_CHEST);
         registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("orange_"), ORANGE_WOOL_CHEST);

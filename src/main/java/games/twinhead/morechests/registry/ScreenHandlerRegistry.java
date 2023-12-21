@@ -36,14 +36,12 @@ public class ScreenHandlerRegistry {
             DOUBLE_WOOL_CHEST_SCREEN_HANDLERS.put(color, ScreenHandlerRegistry.register(MoreChests.id("double_" + color.name().toLowerCase() + "_wool_chest_screen_handler"), (id, inventory) -> WoolChestScreenHandler.create9x6(id, inventory, color)));
         }
 
-        IRON_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(IronChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
-        GOLD_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(GoldChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
-        DIAMOND_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(DiamondChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
-        NETHERITE_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(NetheriteChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
-        COPPER_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(CopperChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
-        DOUBLE_COPPER_CHEST_SCREEN_HANDLER = new ScreenHandlerType<>(DoubleCopperChestScreenHandler::new, FeatureFlags.VANILLA_FEATURES);
-
-
+        IRON_CHEST_SCREEN_HANDLER = ScreenHandlerRegistry.register(MoreChests.id("iron_chest_screen_handler"), IronChestScreenHandler::new);
+        GOLD_CHEST_SCREEN_HANDLER = ScreenHandlerRegistry.register(MoreChests.id("gold_chest_screen_handler"), GoldChestScreenHandler::new);
+        DIAMOND_CHEST_SCREEN_HANDLER = ScreenHandlerRegistry.register(MoreChests.id("diamond_chest_screen_handler"), DiamondChestScreenHandler::new);
+        NETHERITE_CHEST_SCREEN_HANDLER = ScreenHandlerRegistry.register(MoreChests.id("netherite_chest_screen_handler"), NetheriteChestScreenHandler::new);
+        COPPER_CHEST_SCREEN_HANDLER = ScreenHandlerRegistry.register(MoreChests.id("copper_chest_screen_handler"), CopperChestScreenHandler::new);
+        DOUBLE_COPPER_CHEST_SCREEN_HANDLER = ScreenHandlerRegistry.register(MoreChests.id("double_copper_chest_screen_handler"), DoubleCopperChestScreenHandler::new);
     }
 
     private static <T extends ScreenHandler> ScreenHandlerType<T> register(Identifier id, ScreenHandlerType.Factory<T> factory) {

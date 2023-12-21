@@ -29,9 +29,7 @@ public class BlockEntityRegistry {
                 BlockRegistry.MANGROVE_PLANK_CHEST,
                 BlockRegistry.OAK_PLANK_CHEST,
                 BlockRegistry.SPRUCE_PLANK_CHEST,
-                BlockRegistry.WARPED_PLANK_CHEST,
-                BlockRegistry.BAMBOO_PLANK_CHEST,
-                BlockRegistry.CHERRY_PLANK_CHEST);
+                BlockRegistry.WARPED_PLANK_CHEST);
 
         WOOL_CHEST = registerWool(ChestTypes.WOOL, BlockRegistry.WHITE_WOOL_CHEST, BlockRegistry.ORANGE_WOOL_CHEST,
                 BlockRegistry.MAGENTA_WOOL_CHEST, BlockRegistry.LIGHT_BLUE_WOOL_CHEST, BlockRegistry.YELLOW_WOOL_CHEST,
