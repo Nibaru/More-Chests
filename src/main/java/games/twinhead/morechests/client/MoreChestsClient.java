@@ -49,7 +49,6 @@ public class MoreChestsClient implements ClientModInitializer {
             registerDouble("dark_oak_plank_chest", registry);
             registerDouble("crimson_plank_chest", registry);
             registerDouble("warped_plank_chest", registry);
-            registerDouble("mangrove_plank_chest", registry);
 
             for (DyeColor color : DyeColor.values()) {
                 registerDouble(color.getName() + "_wool_chest", registry);

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:dark_oak_plank_chest"
+  }
+}

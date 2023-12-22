@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:spruce_plank_chest"
+  }
+}

@@ -18,15 +18,16 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.BiPredicate;
 
 public class CopperChestBlock extends CustomChestBlock implements Oxidizable {
@@ -143,7 +144,7 @@ public class CopperChestBlock extends CustomChestBlock implements Oxidizable {
                         if (chestBlockEntity.hasCustomName()) {
                             return chestBlockEntity.getDisplayName();
                         } else {
-                            return chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString()));
+                            return chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : new TranslatableText("container.more_chests.chest_double", new TranslatableText(chestBlockEntity2.getContainerName().getString()));
                         }
                     }
                 });

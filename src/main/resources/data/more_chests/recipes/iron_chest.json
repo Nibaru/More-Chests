@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "iron_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "tag": "more_chests:wooden_chests"
+    }
+  },
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:iron_chest"
+  }
+}

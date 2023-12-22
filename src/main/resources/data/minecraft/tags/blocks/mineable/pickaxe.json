@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#more_chests:copper_chests",
+    "more_chests:iron_chest",
+    "more_chests:gold_chest",
+    "more_chests:diamond_chest",
+    "more_chests:netherite_chest"
+  ]
+}

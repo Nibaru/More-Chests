@@ -16,6 +16,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -83,7 +84,7 @@ public class WoolChestBlock extends CustomChestBlock {
                         if (chestBlockEntity.hasCustomName()) {
                             return chestBlockEntity.getDisplayName();
                         } else {
-                            return chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString()));
+                            return chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : new TranslatableText("container.more_chests.chest_double", new TranslatableText(chestBlockEntity2.getContainerName().getString()));
                         }
                     }
                 });

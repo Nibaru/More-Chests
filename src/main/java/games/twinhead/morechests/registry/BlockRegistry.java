@@ -22,7 +22,6 @@ public class BlockRegistry {
     public static final CustomChestBlock CRIMSON_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock DARK_OAK_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock JUNGLE_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_PLANKS), ChestTypes.PLANK);
-    public static final CustomChestBlock MANGROVE_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock OAK_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock SPRUCE_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS), ChestTypes.PLANK);
     public static final CustomChestBlock WARPED_PLANK_CHEST = new PlankChestBlock(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS), ChestTypes.PLANK);
@@ -66,7 +65,6 @@ public class BlockRegistry {
         registerBlock(MoreChests.id("crimson_plank_chest"), CRIMSON_PLANK_CHEST);
         registerBlock(MoreChests.id("dark_oak_plank_chest"), DARK_OAK_PLANK_CHEST);
         registerBlock(MoreChests.id("jungle_plank_chest"), JUNGLE_PLANK_CHEST);
-        registerBlock(MoreChests.id("mangrove_plank_chest"), MANGROVE_PLANK_CHEST);
         registerBlock(MoreChests.id("oak_plank_chest"), OAK_PLANK_CHEST);
         registerBlock(MoreChests.id("spruce_plank_chest"), SPRUCE_PLANK_CHEST);
         registerBlock(MoreChests.id("warped_plank_chest"), WARPED_PLANK_CHEST);
@@ -125,7 +123,7 @@ public class BlockRegistry {
 
 
      public static void registerBlockItem(Identifier id, CustomChestBlock block){
-         Registry.register(Registry.ITEM, id, new CustomChestBlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof() :new Item.Settings().group(MoreChests.MOD_GROUP))));
+         Registry.register(Registry.ITEM, id, new CustomChestBlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof().group(MoreChests.MOD_GROUP) :new Item.Settings().group(MoreChests.MOD_GROUP))));
      }
 
 }

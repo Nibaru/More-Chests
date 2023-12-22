@@ -1,0 +1,59 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wool_chests",
+  "ingredients": [
+    {
+      "tag": "c:yellow_dyes"
+    },
+    [
+      {
+        "item": "more_chests:black_wool_chest"
+      },
+      {
+        "item": "more_chests:blue_wool_chest"
+      },
+      {
+        "item": "more_chests:brown_wool_chest"
+      },
+      {
+        "item": "more_chests:cyan_wool_chest"
+      },
+      {
+        "item": "more_chests:gray_wool_chest"
+      },
+      {
+        "item": "more_chests:green_wool_chest"
+      },
+      {
+        "item": "more_chests:light_blue_wool_chest"
+      },
+      {
+        "item": "more_chests:light_gray_wool_chest"
+      },
+      {
+        "item": "more_chests:lime_wool_chest"
+      },
+      {
+        "item": "more_chests:magenta_wool_chest"
+      },
+      {
+        "item": "more_chests:orange_wool_chest"
+      },
+      {
+        "item": "more_chests:pink_wool_chest"
+      },
+      {
+        "item": "more_chests:purple_wool_chest"
+      },
+      {
+        "item": "more_chests:red_wool_chest"
+      },
+      {
+        "item": "more_chests:white_wool_chest"
+      }
+    ]
+  ],
+  "result": {
+    "item": "more_chests:yellow_wool_chest"
+  }
+}

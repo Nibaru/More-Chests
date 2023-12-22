@@ -1,0 +1,6 @@
+{
+  "parent": "more_chests:block/chest_template",
+  "textures": {
+    "layer0": "more_chests:entity/chest/purple_wool_chest"
+  }
+}

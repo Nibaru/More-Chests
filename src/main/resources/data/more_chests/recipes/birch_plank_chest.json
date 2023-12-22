@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:birch_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:birch_plank_chest"
+  }
+}

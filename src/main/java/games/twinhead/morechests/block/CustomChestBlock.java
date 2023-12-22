@@ -26,10 +26,10 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -37,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.BiPredicate;
 
 public class CustomChestBlock extends ChestBlock {
@@ -190,7 +191,7 @@ public class CustomChestBlock extends ChestBlock {
                         if (chestBlockEntity.hasCustomName()) {
                             return chestBlockEntity.getDisplayName();
                         } else {
-                            return (Text) (chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : Text.translatable("container.more_chests.chest_double", Text.translatable(chestBlockEntity2.getContainerName().getString())));
+                            return (Text) (chestBlockEntity2.hasCustomName() ? chestBlockEntity2.getDisplayName() : new TranslatableText("container.more_chests.chest_double", new TranslatableText(chestBlockEntity2.getContainerName().getString())));
                         }
                     }
                 });

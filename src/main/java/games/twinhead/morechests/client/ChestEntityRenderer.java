@@ -11,8 +11,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
 import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.LidOpenable;
 import net.minecraft.block.enums.ChestType;
+import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
@@ -29,7 +29,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
-public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
+public class ChestEntityRenderer<T extends CustomChestBlockEntity & ChestAnimationProgress> extends ChestBlockEntityRenderer<T> {
 
     private final ModelPart chestLid;
     private final ModelPart chestBase;

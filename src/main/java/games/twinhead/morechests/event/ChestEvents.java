@@ -105,7 +105,7 @@ public class ChestEvents {
     private void updateBlock(PlayerEntity player, World world, BlockState state, BlockPos pos, Hand hand, ChestType chestType){
         if (player instanceof ServerPlayerEntity) Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)player, pos, player.getStackInHand(hand));
         world.setBlockState(pos, state.with(ChestBlock.CHEST_TYPE, chestType), Block.NOTIFY_ALL);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, state));
+        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos);
         if (!player.isCreative())
             player.getStackInHand(hand).damage(1, player, (p) -> p.sendToolBreakStatus(hand));
     }
@@ -252,7 +252,7 @@ public class ChestEvents {
     private void addWax(PlayerEntity player, World world, BlockState state, BlockPos pos, Hand hand, ChestType chestType){
         if (player instanceof ServerPlayerEntity) Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)player, pos, player.getStackInHand(hand));
         world.setBlockState(pos, state.with(ChestBlock.CHEST_TYPE, chestType), Block.NOTIFY_ALL);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, state));
+        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos);
         world.syncWorldEvent(player, WorldEvents.BLOCK_WAXED, pos, 0);
     }
 

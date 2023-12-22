@@ -25,7 +25,6 @@ public class BlockEntityRegistry {
                 BlockRegistry.CRIMSON_PLANK_CHEST,
                 BlockRegistry.DARK_OAK_PLANK_CHEST,
                 BlockRegistry.JUNGLE_PLANK_CHEST,
-                BlockRegistry.MANGROVE_PLANK_CHEST,
                 BlockRegistry.OAK_PLANK_CHEST,
                 BlockRegistry.SPRUCE_PLANK_CHEST,
                 BlockRegistry.WARPED_PLANK_CHEST);

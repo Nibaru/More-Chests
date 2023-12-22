@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "more_chests:white_wool_chest",
+    "more_chests:orange_wool_chest",
+    "more_chests:magenta_wool_chest",
+    "more_chests:light_blue_wool_chest",
+    "more_chests:yellow_wool_chest",
+    "more_chests:lime_wool_chest",
+    "more_chests:pink_wool_chest",
+    "more_chests:gray_wool_chest",
+    "more_chests:light_gray_wool_chest",
+    "more_chests:cyan_wool_chest",
+    "more_chests:purple_wool_chest",
+    "more_chests:blue_wool_chest",
+    "more_chests:brown_wool_chest",
+    "more_chests:green_wool_chest",
+    "more_chests:red_wool_chest",
+    "more_chests:black_wool_chest"
+  ]
+}

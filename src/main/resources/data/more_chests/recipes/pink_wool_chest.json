@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wool_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:pink_wool"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:pink_wool_chest"
+  }
+}

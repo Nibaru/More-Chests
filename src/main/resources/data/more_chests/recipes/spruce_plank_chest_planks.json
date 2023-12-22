@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_chests",
+  "ingredients": [
+    {
+      "tag": "more_chests:wooden_chests"
+    },
+    {
+      "item": "minecraft:spruce_planks"
+    }
+  ],
+  "result": {
+    "item": "more_chests:spruce_plank_chest"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "diamond_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "more_chests:gold_chest"
+    }
+  },
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:diamond_chest"
+  }
+}

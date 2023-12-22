@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "more_chests:warped_plank_chest_planks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warped_plank_chest": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "more_chests:warped_plank_chest"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_warped_plank_chest",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "more_chests:warped_plank_chest_planks"
+    ]
+  }
+}

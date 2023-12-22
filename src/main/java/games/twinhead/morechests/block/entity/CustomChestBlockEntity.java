@@ -18,6 +18,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -59,7 +60,7 @@ public abstract class CustomChestBlockEntity extends ChestBlockEntity {
 
     @Override
     public Text getContainerName() {
-        return Text.translatable(getCachedState().getBlock().getTranslationKey());
+        return new TranslatableText(getCachedState().getBlock().getTranslationKey());
     }
 
 

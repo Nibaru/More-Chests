@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wool_chests",
+  "key": {
+    "#": {
+      "item": "minecraft:gray_wool"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "item": "more_chests:gray_wool_chest"
+  }
+}

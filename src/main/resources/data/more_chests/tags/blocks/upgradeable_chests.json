@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#more_chests:wooden_chests",
+    "#more_chests:wool_chests",
+    "#more_chests:copper_chests",
+    "more_chests:iron_chest",
+    "more_chests:gold_chest",
+    "more_chests:diamond_chest"
+  ]
+}

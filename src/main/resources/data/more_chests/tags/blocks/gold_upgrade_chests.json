@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#more_chests:copper_chests",
+    "more_chests:iron_chest"
+  ]
+}
