@@ -43,7 +43,7 @@ public class WoolChestBlockEntity extends BasicChestBlockEntity{
 
             @Override
             protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-                WoolChestBlockEntity.this.onViewerCountUpdate(world, pos, state, oldViewerCount, newViewerCount);
+                WoolChestBlockEntity.this.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
             }
 
             @Override

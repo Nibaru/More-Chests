@@ -42,7 +42,7 @@ public class GoldChestBlockEntity extends CustomChestBlockEntity{
 
             @Override
             protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-                GoldChestBlockEntity.this.onViewerCountUpdate(world, pos, state, oldViewerCount, newViewerCount);
+                GoldChestBlockEntity.this.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
             }
 
             @Override

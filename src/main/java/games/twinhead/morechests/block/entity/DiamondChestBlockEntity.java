@@ -42,7 +42,7 @@ public class DiamondChestBlockEntity extends CustomChestBlockEntity{
 
             @Override
             protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-                DiamondChestBlockEntity.this.onViewerCountUpdate(world, pos, state, oldViewerCount, newViewerCount);
+                DiamondChestBlockEntity.this.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
             }
 
             @Override

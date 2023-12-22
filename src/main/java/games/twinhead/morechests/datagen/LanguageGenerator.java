@@ -1,12 +1,12 @@
 package games.twinhead.morechests.datagen;
 
 import games.twinhead.morechests.registry.BlockRegistry;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 
 public class LanguageGenerator extends FabricLanguageProvider {
     
-    protected LanguageGenerator(FabricDataOutput dataOutput) {
+    protected LanguageGenerator(FabricDataGenerator dataOutput) {
         super(dataOutput);
     }
 
@@ -52,12 +52,14 @@ public class LanguageGenerator extends FabricLanguageProvider {
         tb.add(BlockRegistry.BLACK_WOOL_CHEST, "Black Wool Chest");
 
         tb.add("container.more_chests.chest_double", "Large %d");
-        tb.add("item_group.more_chests.more_chests_mod_group", "More Chests");
+        tb.add("itemGroup.more_chests.more_chests_mod_group", "More Chests");
 
         tb.add("item.more_chests.chest_item.tooltip.shift", "§7Hold§7 §eShift§7");
         tb.add("item.more_chests.chest_item.tooltip.upgrades_into", "§7Upgrades into:§r %s");
-        tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredient", "§7Sneak and interact while holding %s %s §7to upgrade.");
-        tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredients", "§7Sneak and interact while holding %s §a%s §7or %s §a%s §7to upgrade.");
+        tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredient", "§7Sneak and interact while holding");
+        tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredient_two", "%s %s §7to upgrade.");
+        tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredients", "§7Sneak and interact while holding");
+        tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredients_two", "%s §a%s §7or %s §a%s §7to upgrade.");
         tb.add("item.more_chests.chest_item.tooltip.chest_variants", "§7Available in §n%s §7chest variants");
     }
 }

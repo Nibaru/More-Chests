@@ -5,8 +5,7 @@ import games.twinhead.morechests.block.ChestTypes;
 import games.twinhead.morechests.block.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.util.registry.Registry;
 
 public class BlockEntityRegistry {
 
@@ -48,35 +47,35 @@ public class BlockEntityRegistry {
                 BlockRegistry.WAXED_OXIDIZED_COPPER_CHEST
         );
 
-        IRON_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.IRON.getId(),
+        IRON_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, ChestTypes.IRON.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new IronChestBlockEntity(pos, state, ChestTypes.IRON),
                         BlockRegistry.IRON_CHEST).build(null));
-        GOLD_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.GOLD.getId(),
+        GOLD_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, ChestTypes.GOLD.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new GoldChestBlockEntity(pos, state, ChestTypes.GOLD),
                         BlockRegistry.GOLD_CHEST).build(null));
-        DIAMOND_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.DIAMOND.getId(),
+        DIAMOND_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, ChestTypes.DIAMOND.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new DiamondChestBlockEntity(pos, state, ChestTypes.DIAMOND),
                         BlockRegistry.DIAMOND_CHEST).build(null));
-        NETHERITE_CHEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, ChestTypes.NETHERITE.getId(),
+        NETHERITE_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, ChestTypes.NETHERITE.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new NetheriteChestBlockEntity(pos, state, ChestTypes.NETHERITE),
                         BlockRegistry.NETHERITE_CHEST).build(null));
     }
 
 
     private static BlockEntityType<BasicChestBlockEntity> registerBasic(ChestTypes type, CustomChestBlock... block){
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new BasicChestBlockEntity(pos, state, type),
                         block).build(null));
     }
 
     private static BlockEntityType<WoolChestBlockEntity> registerWool(ChestTypes type, CustomChestBlock... block){
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new WoolChestBlockEntity(pos, state, type),
                         block).build(null));
     }
 
     private static BlockEntityType<CopperChestBlockEntity> registerCopper(ChestTypes type, CustomChestBlock... block){
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, type.getId(),
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, type.getId(),
                 FabricBlockEntityTypeBuilder.create((pos, state)-> new CopperChestBlockEntity(pos, state, type),
                         block).build(null));
     }

@@ -1,17 +1,20 @@
 package games.twinhead.morechests.datagen;
 
 import games.twinhead.morechests.registry.BlockRegistry;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.data.server.BlockLootTableGenerator;
 
 public class LootTableGenerator extends FabricBlockLootTableProvider {
 
-    protected LootTableGenerator(FabricDataOutput dataOutput) {
+    protected LootTableGenerator(FabricDataGenerator dataOutput) {
         super(dataOutput);
     }
 
     @Override
-    public void generate() {
-        BlockRegistry.CHEST_BLOCKS.forEach((id, block) ->  this.addDrop(block, this::nameableContainerDrops));
+    protected void generateBlockLootTables() {
+        BlockRegistry.CHEST_BLOCKS.forEach((id, block) ->  this.addDrop(block, BlockLootTableGenerator::nameableContainerDrops));
+
     }
+
 }

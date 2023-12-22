@@ -1,5 +1,6 @@
 package games.twinhead.morechests.block;
 
+import games.twinhead.morechests.block.entity.CustomChestBlockEntity;
 import games.twinhead.morechests.block.entity.WoolChestBlockEntity;
 import games.twinhead.morechests.screen.WoolChestScreenHandler;
 import net.minecraft.block.BlockState;
@@ -41,7 +42,7 @@ public class WoolChestBlock extends CustomChestBlock {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient  & type == this.type.getBlockEntityType() ? (world1, pos, state1, blockEntity) -> ((WoolChestBlockEntity)blockEntity).clientTick() : null;
+        return world.isClient ? CustomChestBlock.checkType(type, this.getExpectedEntityType(), CustomChestBlockEntity::clientTick) : null;
     }
 
     @Nullable

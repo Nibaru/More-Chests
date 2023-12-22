@@ -3,17 +3,14 @@ package games.twinhead.morechests.registry;
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.block.*;
 import games.twinhead.morechests.item.CustomChestBlockItem;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -64,32 +61,32 @@ public class BlockRegistry {
     public static final CustomChestBlock NETHERITE_CHEST = new SingleChestBlock(FabricBlockSettings.copyOf(Blocks.NETHERITE_BLOCK), ChestTypes.NETHERITE);
 
     public static void register(){
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("acacia_"), ACACIA_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("birch_"), BIRCH_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("crimson_"), CRIMSON_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("dark_oak_"), DARK_OAK_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("jungle_"), JUNGLE_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("mangrove_"), MANGROVE_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("oak_"), OAK_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("spruce_"), SPRUCE_PLANK_CHEST);
-        registerBlock(ChestTypes.PLANK.getId().withPrefixedPath("warped_"), WARPED_PLANK_CHEST);
+        registerBlock(MoreChests.id("acacia_plank_chest"), ACACIA_PLANK_CHEST);
+        registerBlock(MoreChests.id("birch_plank_chest"), BIRCH_PLANK_CHEST);
+        registerBlock(MoreChests.id("crimson_plank_chest"), CRIMSON_PLANK_CHEST);
+        registerBlock(MoreChests.id("dark_oak_plank_chest"), DARK_OAK_PLANK_CHEST);
+        registerBlock(MoreChests.id("jungle_plank_chest"), JUNGLE_PLANK_CHEST);
+        registerBlock(MoreChests.id("mangrove_plank_chest"), MANGROVE_PLANK_CHEST);
+        registerBlock(MoreChests.id("oak_plank_chest"), OAK_PLANK_CHEST);
+        registerBlock(MoreChests.id("spruce_plank_chest"), SPRUCE_PLANK_CHEST);
+        registerBlock(MoreChests.id("warped_plank_chest"), WARPED_PLANK_CHEST);
 
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("white_"), WHITE_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("orange_"), ORANGE_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("magenta_"), MAGENTA_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("light_blue_"), LIGHT_BLUE_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("yellow_"), YELLOW_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("lime_"), LIME_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("pink_"), PINK_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("gray_"), GRAY_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("light_gray_"), LIGHT_GRAY_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("cyan_"), CYAN_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("purple_"), PURPLE_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("blue_"), BLUE_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("brown_"), BROWN_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("green_"), GREEN_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("red_"), RED_WOOL_CHEST);
-        registerBlock(ChestTypes.WOOL.getId().withPrefixedPath("black_"), BLACK_WOOL_CHEST);
+        registerBlock(MoreChests.id("white_wool_chest"), WHITE_WOOL_CHEST);
+        registerBlock(MoreChests.id("orange_wool_chest"), ORANGE_WOOL_CHEST);
+        registerBlock(MoreChests.id("magenta_wool_chest"), MAGENTA_WOOL_CHEST);
+        registerBlock(MoreChests.id("light_blue_wool_chest"), LIGHT_BLUE_WOOL_CHEST);
+        registerBlock(MoreChests.id("yellow_wool_chest"), YELLOW_WOOL_CHEST);
+        registerBlock(MoreChests.id("lime_wool_chest"), LIME_WOOL_CHEST);
+        registerBlock(MoreChests.id("pink_wool_chest"), PINK_WOOL_CHEST);
+        registerBlock(MoreChests.id("gray_wool_chest"), GRAY_WOOL_CHEST);
+        registerBlock(MoreChests.id("light_gray_wool_chest"), LIGHT_GRAY_WOOL_CHEST);
+        registerBlock(MoreChests.id("cyan_wool_chest"), CYAN_WOOL_CHEST);
+        registerBlock(MoreChests.id("purple_wool_chest"), PURPLE_WOOL_CHEST);
+        registerBlock(MoreChests.id("blue_wool_chest"), BLUE_WOOL_CHEST);
+        registerBlock(MoreChests.id("brown_wool_chest"), BROWN_WOOL_CHEST);
+        registerBlock(MoreChests.id("green_wool_chest"), GREEN_WOOL_CHEST);
+        registerBlock(MoreChests.id("red_wool_chest"), RED_WOOL_CHEST);
+        registerBlock(MoreChests.id("black_wool_chest"), BLACK_WOOL_CHEST);
 
         registerBlock(ChestTypes.COPPER.getId(), COPPER_CHEST);
         registerBlock(MoreChests.id("exposed_copper_chest"), EXPOSED_COPPER_CHEST);
@@ -120,7 +117,7 @@ public class BlockRegistry {
 
 
     public static void registerBlock(Identifier id, CustomChestBlock block){
-        Registry.register(Registries.BLOCK, id, block);
+        Registry.register(Registry.BLOCK, id, block);
         CHEST_BLOCKS.put(id, block);
         registerBlockItem(id, block);
     }
@@ -128,8 +125,7 @@ public class BlockRegistry {
 
 
      public static void registerBlockItem(Identifier id, CustomChestBlock block){
-         Item item = Registry.register(Registries.ITEM, id, new CustomChestBlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof() :new Item.Settings())));
-         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(item));
+         Registry.register(Registry.ITEM, id, new CustomChestBlockItem(block, (id.equals(ChestTypes.NETHERITE.getId()) ? new Item.Settings().fireproof() :new Item.Settings().group(MoreChests.MOD_GROUP))));
      }
 
 }

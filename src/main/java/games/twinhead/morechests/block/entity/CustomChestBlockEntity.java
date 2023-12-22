@@ -3,8 +3,10 @@ package games.twinhead.morechests.block.entity;
 import games.twinhead.morechests.block.ChestTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.ChestLidAnimator;
@@ -12,9 +14,6 @@ import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -22,6 +21,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +29,7 @@ public abstract class CustomChestBlockEntity extends ChestBlockEntity {
 
     private final ChestTypes type;
     public CustomViewerCountManager stateManager;
-    private final ChestLidAnimator lidAnimator = new ChestLidAnimator();
+    private final ChestLidAnimator lidAnimator;
 
     public CustomChestBlockEntity(BlockPos pos, BlockState state, ChestTypes type) {
         this(type.getBlockEntityType(), pos, state, type);
@@ -40,6 +40,7 @@ public abstract class CustomChestBlockEntity extends ChestBlockEntity {
         this.setInvStackList(DefaultedList.ofSize(type.rows * type.columns, ItemStack.EMPTY));
         this.type = type;
         this.stateManager = initStateManager();
+        lidAnimator = new ChestLidAnimator();
     }
 
     public ChestTypes getChestType() {
@@ -67,16 +68,9 @@ public abstract class CustomChestBlockEntity extends ChestBlockEntity {
         return this.lidAnimator.getProgress(tickDelta);
     }
 
-    @Nullable
-    @Override
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.create(this);
-    }
-
-
     @Environment(EnvType.CLIENT)
-    public void clientTick() {
-        lidAnimator.step();
+    public static void clientTick(World world, BlockPos pos, BlockState state, CustomChestBlockEntity blockEntity) {
+        blockEntity.lidAnimator.step();
     }
 
     public boolean onSyncedBlockEvent(int type, int data) {
@@ -121,5 +115,29 @@ public abstract class CustomChestBlockEntity extends ChestBlockEntity {
             f += (double)direction.getOffsetZ() * 0.5;
         }
         world.playSound(null, d, e, f, soundEvent, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
+    }
+
+    public void onScheduledTick() {
+        if (!this.removed) {
+            this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());
+        }
+
+    }
+
+    public static int getPlayersLookingInChestCount(BlockView world, BlockPos pos) {
+        BlockState blockState = world.getBlockState(pos);
+        if (blockState.hasBlockEntity()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CustomChestBlockEntity) {
+                return ((CustomChestBlockEntity)blockEntity).stateManager.getViewerCount();
+            }
+        }
+
+        return 0;
+    }
+
+    protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+        Block block = state.getBlock();
+        world.addSyncedBlockEvent(pos, block, 1, newViewerCount);
     }
 }

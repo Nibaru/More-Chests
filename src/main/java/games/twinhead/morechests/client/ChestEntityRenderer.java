@@ -26,7 +26,7 @@ import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable> extends ChestBlockEntityRenderer<T> {
@@ -68,7 +68,7 @@ public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable>
             matrices.push();
             float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
             matrices.translate(0.5F, 0.5F, 0.5F);
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
+            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
             matrices.translate(-0.5F, -0.5F, -0.5F);
             DoubleBlockProperties.PropertySource<? extends ChestBlockEntity> properties;
             if (world == null) {
@@ -78,6 +78,9 @@ public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable>
             }
 
             float g = entity.getAnimationProgress(tickDelta);
+
+
+
             g = 1.0F - g;
             g = 1.0F - g * g * g;
             int i = ((Int2IntFunction)properties.apply(new LightmapCoordinatesRetriever())).applyAsInt(light);
@@ -90,7 +93,7 @@ public class ChestEntityRenderer<T extends CustomChestBlockEntity & LidOpenable>
 
             String chestTypeString = chestType != ChestType.SINGLE ? "_" + chestType.asString() : "";
 
-            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE,  textureId.withSuffixedPath(chestTypeString));
+            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE,  new Identifier(textureId.getNamespace(), textureId.getPath() + chestTypeString));
 
             VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
 

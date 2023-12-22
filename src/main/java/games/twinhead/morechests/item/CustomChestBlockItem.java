@@ -35,9 +35,11 @@ public class CustomChestBlockItem extends BlockItem {
 
                 tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_into", texts.get(0) + (upgradesInto(type).size() > 1 ? "," + texts.get(1): "")));
                 if (upgradeItem(type).size() > 1){
-                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients", upgradeItemCount(type) + "x" , Text.translatable(upgradeItem(type).get(0).getTranslationKey()), upgradeItemCount(type) + "x", (upgradeItem(type).size() > 0 ? Text.translatable(upgradeItem(type).get(1).getTranslationKey()) : "")));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients"));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredients_two",upgradeItemCount(type) + "x" , Text.translatable(upgradeItem(type).get(0).getTranslationKey()), upgradeItemCount(type) + "x", (upgradeItem(type).size() > 0 ? Text.translatable(upgradeItem(type).get(1).getTranslationKey()) : "")));
                 } else {
-                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient", upgradeItemCount(type) + "x", Text.translatable(upgradeItem(type).get(0).getTranslationKey())));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient"));
+                    tooltip.add(Text.translatable("item.more_chests.chest_item.tooltip.upgrades_ingredient_two", upgradeItemCount(type) + "x", Text.translatable(upgradeItem(type).get(0).getTranslationKey())));
                 }
 
             }

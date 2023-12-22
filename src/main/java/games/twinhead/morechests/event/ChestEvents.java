@@ -1,9 +1,10 @@
 package games.twinhead.morechests.event;
 
 import com.google.common.collect.BiMap;
-import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.CopperChestBlock;
+import games.twinhead.morechests.block.CustomChestBlock;
 import games.twinhead.morechests.block.WaxedCopperChestBlock;
+import games.twinhead.morechests.block.entity.CustomChestBlockEntity;
 import games.twinhead.morechests.registry.BlockRegistry;
 import games.twinhead.morechests.tag.ModTags;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -17,11 +18,11 @@ import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoneycombItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -51,7 +52,7 @@ public class ChestEvents {
                 return waxChest(player, world, hand, hitResult, world.getBlockState(hitResult.getBlockPos()).get(ChestBlock.CHEST_TYPE));
             }
 
-            if (player.getStackInHand(hand).isIn(ItemTags.AXES)){
+            if (player.getStackInHand(hand).getItem() instanceof AxeItem){
                 return scrapeChest(player, world, hand, hitResult, world.getBlockState(hitResult.getBlockPos()).get(ChestBlock.CHEST_TYPE));
             }
 
@@ -130,7 +131,7 @@ public class ChestEvents {
 
         ChestBlockEntity chest = (ChestBlockEntity) blockEntity;
 
-        if (ChestBlockEntity.getPlayersLookingInChestCount(world, hitPos) > 0) { return ActionResult.PASS; }
+        if (CustomChestBlockEntity.getPlayersLookingInChestCount(world, hitPos) > 0) { return ActionResult.PASS; }
 
 
 

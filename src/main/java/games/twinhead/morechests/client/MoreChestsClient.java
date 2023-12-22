@@ -1,12 +1,15 @@
 package games.twinhead.morechests.client;
 
+import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.client.screen.*;
 import games.twinhead.morechests.registry.ModBlockEntityRendererRegistry;
 import games.twinhead.morechests.registry.ScreenHandlerRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.util.DyeColor;
 
 @Environment(EnvType.CLIENT)
@@ -31,5 +34,41 @@ public class MoreChestsClient implements ClientModInitializer {
 
 
         ModBlockEntityRendererRegistry.register();
+
+        ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
+            registerDouble("copper_chest", registry);
+            registerDouble("exposed_copper_chest", registry);
+            registerDouble("weathered_copper_chest", registry);
+            registerDouble("oxidized_copper_chest", registry);
+
+            registerDouble("oak_plank_chest", registry);
+            registerDouble("birch_plank_chest", registry);
+            registerDouble("spruce_plank_chest", registry);
+            registerDouble("jungle_plank_chest", registry);
+            registerDouble("acacia_plank_chest", registry);
+            registerDouble("dark_oak_plank_chest", registry);
+            registerDouble("crimson_plank_chest", registry);
+            registerDouble("warped_plank_chest", registry);
+            registerDouble("mangrove_plank_chest", registry);
+
+            for (DyeColor color : DyeColor.values()) {
+                registerDouble(color.getName() + "_wool_chest", registry);
+            }
+
+            registerSingle("iron_chest", registry);
+            registerSingle("gold_chest", registry);
+            registerSingle("diamond_chest", registry);
+            registerSingle("netherite_chest", registry);
+        });
+    }
+
+    private void registerSingle(String name, ClientSpriteRegistryCallback.Registry registry) {
+        registry.register(MoreChests.id("entity/chest/" + name));
+    }
+
+    private void registerDouble(String name, ClientSpriteRegistryCallback.Registry registry) {
+        registry.register(MoreChests.id("entity/chest/" + name));
+        registry.register(MoreChests.id("entity/chest/" + name + "_left"));
+        registry.register(MoreChests.id("entity/chest/" + name + "_right"));
     }
 }

@@ -28,7 +28,7 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
     protected void drawBackground(MatrixStack context, float delta, int mouseX, int mouseY) {
         int i = ((width - backgroundWidth) / 2) + 27;
         int j = (height - backgroundHeight) / 2;
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
 

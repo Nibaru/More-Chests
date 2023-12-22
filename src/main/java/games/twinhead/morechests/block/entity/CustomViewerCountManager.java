@@ -90,7 +90,7 @@ public abstract class CustomViewerCountManager {
     }
 
     private static void scheduleBlockTick(World world, BlockPos pos, BlockState state) {
-        world.scheduleBlockTick(pos, state.getBlock(), 5);
+        world.createAndScheduleBlockTick(pos, state.getBlock(), 5);
     }
 }
 

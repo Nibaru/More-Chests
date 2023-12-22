@@ -26,7 +26,7 @@ public class IronChestScreen extends HandledScreen<IronChestScreenHandler> {
     protected void drawBackground(MatrixStack context, float delta, int mouseX, int mouseY) {
         int i = (width - backgroundWidth) / 2;
         int j = (height - backgroundHeight) / 2;
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(context, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);

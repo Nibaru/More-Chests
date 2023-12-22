@@ -99,7 +99,9 @@ public class CustomChestBlock extends ChestBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? CustomChestBlock.checkType(type, this.getExpectedEntityType(), (world1, pos, state1, blockEntity) -> (blockEntity).clientTick()) : null;
+
+
+        return world.isClient ? CustomChestBlock.checkType(type, this.getExpectedEntityType(), CustomChestBlockEntity::clientTick) : null;
     }
 
     public BlockEntityType<? extends CustomChestBlockEntity> getExpectedEntityType() {
@@ -108,7 +110,7 @@ public class CustomChestBlock extends ChestBlock {
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         ChestType chestType = ChestType.SINGLE;
-        Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
+        Direction direction = ctx.getPlayer().getHorizontalFacing().getOpposite();
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
 
         boolean bl = ctx.shouldCancelInteraction();
@@ -207,7 +209,7 @@ public class CustomChestBlock extends ChestBlock {
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if ((Boolean)state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         if (neighborState.isOf(this) && direction.getAxis().isHorizontal()) {

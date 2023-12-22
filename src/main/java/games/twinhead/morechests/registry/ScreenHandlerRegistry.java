@@ -2,13 +2,11 @@ package games.twinhead.morechests.registry;
 
 import games.twinhead.morechests.MoreChests;
 import games.twinhead.morechests.screen.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -45,6 +43,6 @@ public class ScreenHandlerRegistry {
     }
 
     private static <T extends ScreenHandler> ScreenHandlerType<T> register(Identifier id, ScreenHandlerType.Factory<T> factory) {
-        return Registry.register(Registries.SCREEN_HANDLER, id, new ScreenHandlerType<>(factory, FeatureFlags.VANILLA_FEATURES));
+        return Registry.register(Registry.SCREEN_HANDLER, id, new ScreenHandlerType<>(factory));
     }
 }

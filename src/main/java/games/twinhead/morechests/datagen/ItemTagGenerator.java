@@ -2,21 +2,18 @@ package games.twinhead.morechests.datagen;
 
 import games.twinhead.morechests.registry.BlockRegistry;
 import games.twinhead.morechests.tag.ModTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryWrapper;
-
-import java.util.concurrent.CompletableFuture;
 
 public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
-    public ItemTagGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, registriesFuture);
+    public ItemTagGenerator(FabricDataGenerator output) {
+        super(output);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg) {
+    protected void generateTags() {
         getOrCreateTagBuilder(ModTags.WOODEN_CHESTS).add(
                 BlockRegistry.ACACIA_PLANK_CHEST.asItem(),
                 BlockRegistry.BIRCH_PLANK_CHEST.asItem(),
