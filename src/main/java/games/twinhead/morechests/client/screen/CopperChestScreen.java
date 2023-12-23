@@ -21,20 +21,17 @@ public class CopperChestScreen extends HandledScreen<CopperChestScreenHandler> {
     }
 
     @Override
-    protected void init() {
-        super.init();
-    }
-
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(context, mouseX, mouseY);
-    }
-
-    @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         context.drawTexture(TEXTURE, x, y, 0, 0, this.backgroundWidth, this.rows * 18 + 17);
         context.drawTexture(TEXTURE, x, y + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }

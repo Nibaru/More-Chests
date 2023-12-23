@@ -53,8 +53,9 @@ public class NetheriteChestScreen extends HandledScreen<NetheriteChestScreenHand
     }
 
     @Override
-    public void render(DrawContext texture, int mouseX, int mouseY, float delta) {
-        super.render(texture, mouseX, mouseY, delta);
-        drawMouseoverTooltip(texture, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }

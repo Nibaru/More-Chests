@@ -25,13 +25,6 @@ public class DiamondChestScreen extends HandledScreen<DiamondChestScreenHandler>
         this.backgroundWidth = 230;
     }
 
-
-
-    @Override
-    protected void init() {
-        super.init();
-    }
-
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         int i = (width - backgroundWidth) / 2;
@@ -43,8 +36,9 @@ public class DiamondChestScreen extends HandledScreen<DiamondChestScreenHandler>
     }
 
     @Override
-    public void render(DrawContext matrices, int mouseX, int mouseY, float delta) {
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }

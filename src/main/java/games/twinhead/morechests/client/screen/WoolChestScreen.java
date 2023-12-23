@@ -35,9 +35,10 @@ public class WoolChestScreen extends HandledScreen<WoolChestScreenHandler> {
     }
 
     @Override
-    public void render(DrawContext matrices, int mouseX, int mouseY, float delta) {
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override
@@ -45,6 +46,4 @@ public class WoolChestScreen extends HandledScreen<WoolChestScreenHandler> {
         context.drawText(this.textRenderer, this.title, this.titleX, this.titleY, lightColors.contains(handler.getColor()) ? 0x404040 : 0xBDBDBD, false);
         context.drawText(this.textRenderer, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, 0x404040, false);
     }
-
-
 }

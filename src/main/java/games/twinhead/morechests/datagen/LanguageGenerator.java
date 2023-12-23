@@ -57,7 +57,7 @@ public class LanguageGenerator extends FabricLanguageProvider {
         tb.add("item_group.more_chests.more_chests_mod_group", "More Chests");
 
         tb.add("item.more_chests.chest_item.tooltip.shift", "§7Hold§7 §eShift§7");
-        tb.add("item.more_chests.chest_item.tooltip.upgrades_into", "§7Upgrades into:§r");
+        tb.add("item.more_chests.chest_item.tooltip.upgrades_into", "§7Upgrades into:§r%s");
         tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredient", "§7Sneak and interact while holding %s %s §7to upgrade.");
         tb.add("item.more_chests.chest_item.tooltip.upgrades_ingredients", "§7Sneak and interact while holding %s §a%s §7or %s §a%s §7to upgrade.");
         tb.add("item.more_chests.chest_item.tooltip.chest_variants", "§7Available in §n%s §7chest variants");
